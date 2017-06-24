@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>用户登录 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/login_v2.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/h_qr_login_2.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/tips.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['path']}static/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/layer/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var pop = {
+	up: function(scrolling, text, url, width, height, top) {
+		layer.open({
+			type: 2,
+			maxmin: true,
+			title: text,
+			content: [url, scrolling],
+			area: [width, height],
+			offset: top,
+			shade: false
+		});
+	}
+}
+function qzone_return(type){
+        layer.closeAll();
+        if(type==1){
+            uc_syn('login');
+            this.parent.location.href = in_path;
+        }else{
+            this.parent.location.href = '{$rewrite['user.php/people/connect/']}';
+        }
+}
+function update_seccode(){
+	document.getElementById('img_seccode').src = '{$rewrite['user.php/people/seccode/' + Math.random() + '/']}';
+}
+</script>
+</head>
+<body>
+<div class="header">
+	<h1><a href="{$_G['path']}" target="_top">{$_G['name']}</a></h1>
+	<div class="mini_nav">
+		<a href="{$_G['path']}" target="_top">网站首页</a>|<a href="{$_G['path']}user.php" target="_top">用户中心</a>
+	</div>
+</div>
+<div class="mod_main">
+	<div class="decorate_pic">
+		<img src="{$_G['tempath']}css/banner.jpg" width="518" height="310">
+	</div>
+	<div class="mod_login">
+		<div class="login_box">
+			<div class="login_no_qlogin">
+				<div class="header">
+					<div class="switch">
+						<a class="switch_btn_focus">帐号登录</a>
+					</div>
+				</div>
+				<div class="web_qr_login" style="height: 265px;">
+					<div class="web_qr_login_show">
+						<div class="web_login">
+							<div class="login_form">
+								<form method="get" onsubmit="login(0);return false;">
+									<div class="uinArea">
+										<label class="input_tips" id="i_username">用户名</label>
+										<div class="inputOuter">
+											<input type="text" class="inputstyle" id="username" onclick="document.getElementById('i_username').style.display = 'none'">
+										</div>
+									</div>
+									<div class="pwdArea">
+										<label class="input_tips" id="i_password">密码</label>
+										<div class="inputOuter">
+											<input type="password" class="inputstyle password" id="password" onclick="document.getElementById('i_password').style.display = 'none'">
+										</div>
+									</div>
+									<div class="verifyArea">
+										<div class="verifyinputArea">
+											<label class="input_tips" id="i_seccode">验证码</label>
+											<div class="inputOuter">
+												<input type="text" class="inputstyle verifycode" id="seccode" onclick="document.getElementById('i_seccode').style.display = 'none'">
+											</div>
+										</div>
+										<div class="verifyimgArea">
+											<img id="img_seccode" src="{$rewrite['user.php/people/seccode/']}" align="absmiddle" class="verifyimg"><a href="javascript:update_seccode();" class="verifyimg_tips">更换</a><a href="{$rewrite['index.php/page/lostpasswd/']}" target="_top" class="verifyimg_tips">忘了密码？</a>
+										</div>
+									</div>
+									<div class="submit">
+										<a class="login_button"><input type="submit" value="登 录" class="btn"></a>
+									</div>
+								</form>
+							</div>
+							<div class="bottom">
+								<a style="cursor:pointer" title="QQ登录" onclick="pop.up('no', 'QQ登录', in_path+'source/pack/connect/login.php', '700px', '430px', '60px');"><img src="{$_G['path']}static/user/images/connect.gif"/></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--{require 'tips.html'}-->
+</body>
+</html>

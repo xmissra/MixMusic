@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$rank['name']}排行 - 音乐排行榜 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/bang.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}widget/box/css/box.css" rel="stylesheet" type="text/css"/>
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.bangNavList li.rank_{$rank['id']} a,.bangNavList li.rank_{$rank['id']} a:hover{color:#fff;font-weight:800;background:#f34f34 url({$_G['tempath']}css/bang.png) right 0 no-repeat}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/v.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/box/js/box.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a class="active" href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 音乐排行榜 &gt; {$rank['name']}排行</h2>
+</div>
+<div class="bangBox clearfix">
+ <div class="bangL">
+  <div class="bangNav bgWrite">
+   <h2 class="bangNavHd"><img src="{$_G['tempath']}css/bang.png" /></h2>
+   <div class="bangNavBd">
+    <ul class="bangNavList">
+     <li class="rank_down"><a href="{$rewrite['index.php/misc/rank/down/']}">下载排行</a></li>
+     <li class="rank_fav"><a href="{$rewrite['index.php/misc/rank/fav/']}">收藏排行</a></li>
+     <li class="rank_good"><a href="{$rewrite['index.php/misc/rank/good/']}">好评排行</a></li>
+     <li class="rank_bad"><a href="{$rewrite['index.php/misc/rank/bad/']}">差评排行</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="bangR bangIndex clearfix">
+<div class="mdBox bgWrite" style="margin-left:0;">
+   <div class="mdBoxHd mdBangHd">
+    <h1 class="mdBoxHdTit" style="color:#f00">{$rank['name']}排行Top90</h1>
+   </div>
+   <div class="mdBoxBd">
+    <div class="bangMusic">
+     <div class="songList clearfix">
+      <ol>
+<!--{loop music count=3 sort={$rank['id']}hits start=1}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum topRed">{$music['i']}.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+<!--{loop music count=27 sort={$rank['id']}hits start=4}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum"><script type="text/javascript">var a={$music['i']};var b=3;var c=a+b;document.write(c);</script>.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+      </ol>
+     </div>
+     <div class="setPlay"><a class="setPlayPlay" onclick="lib.all_play('<!--{loop music count=30 sort={$rank['id']}hits start=1}-->{$music['id']}/<!--{/loop music}-->');" style="cursor:pointer;">全部播放</a></div>
+    </div>
+   </div>
+  </div>
+  <div class="mdBox bgWrite">
+   <div class="mdBoxHd mdBangHd">
+    <h1 class="mdBoxHdTit" style="color:#090">Top二</h1>
+   </div>
+   <div class="mdBoxBd">
+    <div class="bangMusic">
+     <div class="songList clearfix">
+      <ol>
+<!--{loop music count=2 sort={$rank['id']}hits start=31}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum topRed"><script type="text/javascript">var a={$music['i']};var b=30;var c=a+b;document.write(c);</script>.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+<!--{loop music count=28 sort={$rank['id']}hits start=33}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum"><script type="text/javascript">var a={$music['i']};var b=32;var c=a+b;document.write(c);</script>.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+      </ol>
+     </div>
+     <div class="setPlay"><a class="setPlayPlay" onclick="lib.all_play('<!--{loop music count=30 sort={$rank['id']}hits start=31}-->{$music['id']}/<!--{/loop music}-->');" style="cursor:pointer;">全部播放</a></div>
+    </div>
+   </div>
+  </div>
+    <div class="mdBox bgWrite">
+   <div class="mdBoxHd mdBangHd">
+    <h1 class="mdBoxHdTit" style="color:#333">Top三</h1>
+   </div>
+   <div class="mdBoxBd">
+    <div class="bangMusic">
+     <div class="songList clearfix">
+      <ol>
+<!--{loop music count=1 sort={$rank['id']}hits start=61}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum topRed"><script type="text/javascript">var a={$music['i']};var b=60;var c=a+b;document.write(c);</script>.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+<!--{loop music count=29 sort={$rank['id']}hits start=62}--><li><input type="hidden" id="rank_{$music['id']}" value="{$music['id']}"><span class="songNum"><script type="text/javascript">var a={$music['i']};var b=61;var c=a+b;document.write(c);</script>.</span><a class="songName" href="{$music['link']}" target="_blank">{$music['name']}</a><a class="add" onclick="lib.add_play({$music['id']}, 'rank');">加入列表</a></li><!--{/loop music}-->
+      </ol>
+     </div>
+     <div class="setPlay"><a class="setPlayPlay" onclick="lib.all_play('<!--{loop music count=30 sort={$rank['id']}hits start=61}-->{$music['id']}/<!--{/loop music}-->');" style="cursor:pointer;">全部播放</a></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<!--{require 'box.html'}-->
+<!--{require 'bottom.html'}-->
+</body>
+</html>

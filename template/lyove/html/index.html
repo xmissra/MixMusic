@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}"/>
+<title>{$_G['name']}，原创音乐门户！</title>
+<meta name="Keywords" content="{$_G['keywords']}"/>
+<meta name="Description" content="{$_G['description']}"/>
+<link rel="stylesheet" href="{$_G['path']}static/pack/asynctips/asynctips.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/asyncbox.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/style.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/layout.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/hfsp.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/index.css" type="text/css"/>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/index.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var connect_url = '{$rewrite['user.php/people/connect/']}';
+var reg_open = <!--{eval}-->return IN_REGOPEN;<!--{/eval}-->;
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+<script type="text/javascript" src="{$_G['tempath']}js/scrolltop.js"></script>
+</head>
+<body class="index_repeat">
+<div id="wrapper" class="indexBodyBg">
+	<div id="header" class="css_sprites_x header_bg_ps">
+		<div class="container">
+			<div class="main_headlft">
+				<div id="logo" class="fl">
+					<a href="{$_G['path']}"><img src="{$_G['tempath']}css/logo.gif" width="134" height="75"></a>
+				</div>
+				<div id="h_search" style="position:relative; left:-46px;" class="fl h_search">
+					<div class="option_selected" id="search_option_selected">
+						<a href="javascript:void(0)" id="st" target="_self">音乐</a>
+					</div>
+					<div class="option_list" id="search_option_list">
+						<ul>
+							<li class="selected"><a href="javascript:void(0)" target="_self">音乐</a></li>
+							<li><a href="javascript:void(0)" target="_self">专辑</a></li>
+							<li><a href="javascript:void(0)" target="_self">歌手</a></li>
+							<li><a href="javascript:void(0)" target="_self">视频</a></li>
+						</ul>
+					</div>
+					<div class="search_box">
+						<input type="text" onfocus="this.value=''" id="sq" value="请输入查询关键字！">
+						<button type="submit" id="hsearch">搜索</button>
+					</div>
+				</div>
+				<div id="menu">
+					<ul id="nav">
+						<li class="mainlevel_nol"><a href="{$_G['path']}">首页</a></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_1"><!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手库</a><!--{/loop singer_class}-->
+						<ul class="sub_nav_1">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop singer_class order=asc}-->
+							<li><a href="{$singerclass['link']}">{$singerclass['name']}</a></li>
+							<!--{/loop singer_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_2"><!--{loop class count=1 order=asc}--><a href="{$class['link']}">发现音乐</a><!--{/loop class}-->
+						<ul class="sub_nav_2">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop class order=asc}-->
+							<li><a href="{$class['link']}">{$class['name']}</a></li>
+							<!--{/loop class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_3"><!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a><!--{/loop special_class}-->
+						<ul class="sub_nav_3">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop special_class order=asc}-->
+							<li><a href="{$specialclass['link']}">{$specialclass['name']}</a></li>
+							<!--{/loop special_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_4"><!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">视频</a><!--{/loop video_class}-->
+						<ul class="sub_nav_4">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop video_class order=asc}-->
+							<li><a href="{$videoclass['link']}">{$videoclass['name']}</a></li>
+							<!--{/loop video_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_nol"><a href="{$_G['path']}user.php">用户中心</a></li>
+					</ul>
+				</div>
+				<div class="nol_nav">
+					<div class="nolnav_title">
+					</div>
+					<ul>
+						<li><a href="{$rewrite['index.php/misc/rank/new/']}">最新排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/hot/']}">最热排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/good/']}">好评排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/bad/']}">差评排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/fav/']}">收藏排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/down/']}">下载排行</a></li>
+					</ul>
+					<div class="nolnav_over">
+					</div>
+				</div>
+			</div>
+			<div class="main_headrit">
+				<div id="site_quick" class="fr black_loginBfo">
+					<span id="getlogin">
+					<script type="text/javascript">get_login();</script>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="hot_infoshow">
+			<div class="fl flash_show">
+				<div id="imgPlay">
+					<ul id="actor" class="imgs" style="width:8640px;margin-left:-6720px;padding:0px;margin:0px">
+						<!--{loop video count=8}-->
+						<li><a target="_blank" href="{$video['link']}"><img src="{$video['cover']}" title="{$video['name']}"></a></li>
+						<!--{/loop video}-->
+					</ul>
+				</div>
+				<div class="pointOper num" id="numInner">
+					<span class="on"></span>
+				</div>
+			</div>
+			<div class="fl hotnews_show">
+				<div class="ctrlBtn" id="lun_down">
+				</div>
+				<div class="news_lun" id="lunhuan">
+					<div id="news_lunCon">
+						<!--{loop music count=9 sort=best}-->
+						<dl class="lun_unit">
+							<dt><a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=small']}" title="{$music['uname']}" width="66" height="48"></a></dt>
+							<dd>
+							<div class="lunttl ffhei fc_fff">
+								<a href="{$music['link']}" target="_blank"><font color="{$music['color']}">{$music['name']}</font></a>
+							</div>
+							<div class="lundate fc_999 ffsong">
+								<a href="{$music['speciallink']}" target="_blank">{$music['specialname']}</a><br/>
+								<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a>
+							</div>
+							</dd>
+						</dl>
+						<!--{/loop music}-->
+					</div>
+				</div>
+				<div class="ctrlBtn" id="lun_up">
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="com_wrap">
+			<div class="im_albumttl">
+				<div class="more_hei">
+					<!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}" target="_blank">更多</a><!--{/loop special_class}-->
+				</div>
+			</div>
+			<div class="im_albumCon">
+				<!--{loop special count=5}-->
+				<dl class="im_album">
+					<dt><a href="{$special['link']}" target="_blank"><img src="{$special['cover']}" title="{$special['name']}" width="210" height="154"></a></dt>
+					<dd class="title"><a href="{$special['link']}" target="_blank">{$special['name']}</a></dd>
+					<dd class="futtl"><a href="{$special['singerlink']}" target="_blank">{$special['singername']}</a></dd>
+				</dl>
+				<!--{/loop special}-->
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="com_wrap">
+			<div class="rank_box">
+				<div class="golden_rank">
+					<div class="ttl">
+						<div class="more_hei">
+							<a href="{$rewrite['index.php/misc/rank/good/']}" target="_blank">更多</a>
+						</div>
+					</div>
+					<ul class="rank_list" id="player_good">
+						<!--{loop music count=3 sort=goodhits}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li class="hottop">
+						<div class="pic">
+							<a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=small']}" title="{$music['uname']}" border="0" width="54" height="54"></a>
+						</div>
+						<div class="text">
+							<div class="rank_list_inner">
+								<div class="rankttl">
+									<a href="{$music['link']}" target="_blank"><font color="{$music['color']}">{$music['name']}</font></a>
+								</div>
+								<div class="fr listNO{$music['i']}">
+								</div>
+							</div>
+							<div class="rank_list_inner">
+								<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a>
+							</div>
+							<div class="rank_list_inner">
+								<span class="a_oper_mh">
+								<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a>
+								<a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+								</span>
+							</div>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<!--{loop music count=7 start=4 sort=goodhits}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li>
+						<div class="num listNO">
+							<script type="text/javascript">var a={$music['i']};var b=3;var c=a+b;document.write(c);</script>
+						</div>
+						<div class="songinfo">
+							<a href="{$music['link']}" target="_blank"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+						</div>
+						<div class="fl a_oper tingicon">
+							<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<li class="btn"><a href="javascript:lib.playerObj('player_good');"><img src="{$_G['tempath']}css/try_all.jpg" width="78" height="20"></a></li>
+					</ul>
+				</div>
+				<div class="hot100_rank">
+					<div class="ttl">
+						<div class="more_hei">
+							<a href="{$rewrite['index.php/misc/rank/hot/']}" target="_blank">更多</a>
+						</div>
+					</div>
+					<ul class="rank_list" id="player_hot">
+						<!--{loop music count=3 sort=hits}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li class="hottop">
+						<div class="pic">
+							<a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=small']}" title="{$music['uname']}" border="0" width="54" height="54"></a>
+						</div>
+						<div class="text">
+							<div class="rank_list_inner">
+								<div class="rankttl">
+									<a href="{$music['link']}" target="_blank"><font color="{$music['color']}">{$music['name']}</font></a>
+								</div>
+								<div class="fr listNO{$music['i']}">
+								</div>
+							</div>
+							<div class="rank_list_inner">
+								<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a>
+							</div>
+							<div class="rank_list_inner">
+								<span class="a_oper_mh">
+								<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a>
+								<a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+								</span>
+							</div>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<!--{loop music count=7 start=4 sort=hits}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li>
+						<div class="num listNO">
+							<script type="text/javascript">var a={$music['i']};var b=3;var c=a+b;document.write(c);</script>
+						</div>
+						<div class="songinfo">
+							<a href="{$music['link']}" target="_blank"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+						</div>
+						<div class="fl a_oper tingicon">
+							<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<li class="btn"><a href="javascript:lib.playerObj('player_hot');"><img src="{$_G['tempath']}css/try_all.jpg" width="78" height="20"></a></li>
+					</ul>
+				</div>
+				<div class="single100_rank">
+					<div class="ttl">
+						<div class="more_hei">
+							<a href="{$rewrite['index.php/misc/rank/new/']}" target="_blank">更多</a>
+						</div>
+					</div>
+					<ul class="rank_list" id="player_new">
+						<!--{loop music count=3}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li class="hottop">
+						<div class="pic">
+							<a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=small']}" title="{$music['uname']}" border="0" width="54" height="54"></a>
+						</div>
+						<div class="text">
+							<div class="rank_list_inner">
+								<div class="rankttl">
+									<a href="{$music['link']}" target="_blank"><font color="{$music['color']}">{$music['name']}</font></a>
+								</div>
+								<div class="fr listNO{$music['i']}">
+								</div>
+							</div>
+							<div class="rank_list_inner">
+								<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a>
+							</div>
+							<div class="rank_list_inner">
+								<span class="a_oper_mh">
+								<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a>
+								<a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+								</span>
+							</div>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<!--{loop music count=7 start=4}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+						<li>
+						<div class="num listNO">
+							<script type="text/javascript">var a={$music['i']};var b=3;var c=a+b;document.write(c);</script>
+						</div>
+						<div class="songinfo">
+							<a href="{$music['link']}" target="_blank"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+						</div>
+						<div class="fl a_oper tingicon">
+							<a class="ting" href="{$music['link']}" target="_blank" title="试听"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<li class="btn"><a href="javascript:lib.playerObj('player_new');"><img src="{$_G['tempath']}css/try_all.jpg" width="78" height="20"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="com_wrap">
+			<div class="im_tuijianttl">
+				<div class="more_hei">
+					<!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}" target="_blank">更多</a><!--{/loop singer_class}-->
+				</div>
+			</div>
+			<div class="index_hdpicLun" id="hdxt_imgPlay">
+				<div class="pic_ctrlBtn lun_lt_btn">
+					<a href="javascript:void(0)" class="hdxt_prev"></a>
+				</div>
+				<div class="index_hdpic_lun">
+					<ul class="hdxt_imgs" id="hdxt_actor" style="width:9000px;margin-left:-8100px;padding:0px;margin:0px">
+						<!--{loop singer count=15 sort=hits}-->
+						<li>
+						<div class="pic">
+							<a href="{$singer['link']}" target="_blank"><img title="{$singer['name']}" src="{$singer['cover']}" width="160" height="200"></a>
+						</div>
+						<div class="text">
+							<a href="{$singer['link']}" target="_blank">{$singer['name']}</a>
+						</div>
+						</li>
+						<!--{/loop singer}-->
+					</ul>
+				</div>
+				<div class="pic_ctrlBtn lun_rt_btn">
+					<a href="javascript:void(0)" class="hdxt_next"></a>
+				</div>
+			</div>
+			<div class="index_hdpicctrl">
+				<div class="hdxt_pointOper num" id="hdxt_numInner">
+					<span class="on"></span><span></span><span></span>
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="partner">
+			<div class="partnerttl">
+			</div>
+			<div class="partnerCon">
+				<ul class="logolist">
+					<!--{loop link type=2 order=asc}-->
+					<li><a href="{$link['url']}" target="_blank"><img src="{$link['cover']}" title="{$link['name']}" width="88" height="31" border="0"></a></li>
+					<!--{/loop link}-->
+				</ul>
+			</div>
+		</div>
+		<div class="friendlink">
+			<div class="friendlinkCon">
+				<div class="friendlinkttl ffhei">
+					友情链接
+				</div>
+				<ul class="friend_list">
+					<!--{loop link type=1 order=asc}-->
+					<li><a href="{$link['url']}" target="_blank">{$link['name']}</a></li>
+					<!--{/loop link}-->
+				</ul>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+	</div>
+</div>
+<div class="hr_10">
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

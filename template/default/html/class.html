@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>{$music['classname']} - 发现音乐 - {$_G['name']}</title>
+	<meta name="Keywords" content="{$_G['keywords']}" />
+	<meta name="Description" content="{$_G['description']}" />
+	<link href="{$_G['tempath']}css/index.css" type="text/css" rel="stylesheet" />
+	<link href="{$_G['tempath']}css/rank_music.css" type="text/css" rel="stylesheet" />
+	<link href="{$_G['tempath']}css/tips.css" type="text/css" rel="stylesheet" />
+	<link href="{$_G['tempath']}css/visitor.css" type="text/css" rel="stylesheet" />
+	<style type="text/css">
+		.mod_side_nav .current_ {$music['classid']}{
+			color: #0c8f44;
+			font-weight: bold;
+			border-left: 5px solid #F60
+		}
+	</style>
+	<script type="text/javascript" src="{$_G['tempath']}js/jquery.js"></script>
+	<script type="text/javascript" src="{$_G['tempath']}js/menu.js"></script>
+	<script type="text/javascript" src="{$_G['tempath']}js/visitor.js"></script>
+	<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+	<script type="text/javascript">
+		var in_path = '{$_G['path']}';
+		var temp_url = '{$_G['tempath']}';
+		var search_url = '{$rewrite['index.php/search/music/ target / ']}';
+		var _menu = 'music';
+		function display_tag(type) {
+			if ($("#tag_" + type + " ol").is(":hidden")) {
+				$("#tag_" + type + " i").removeClass("icon_open");
+				$("#tag_" + type + " i").addClass("icon_close");
+				$("#tag_" + type + " ol").show();
+			} else {
+				$("#tag_" + type + " i").removeClass("icon_close");
+				$("#tag_" + type + " i").addClass("icon_open");
+				$("#tag_" + type + " ol").hide();
+			}
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="frame_top">
+		<!--{require 'top.html'}-->
+		<div class="main_top">
+			<h1 class="frame_logo"><a href="{$_G['path']}" class="logo">{$_G['name']}</a></h1>
+			<div class="frame_search">
+				<input type="text" value="找到好音乐" class="search_text" id="keyword" onfocus="if(this.value=='找到好音乐'){this.value='';}$('.frame_search').addClass('search_focus');"
+				 onblur="if(this.value==''){this.value='找到好音乐';}$('.frame_search').removeClass('search_focus');lib.s_onblur();" onkeyup="get_search(this.value);">
+				<input type="button" value="搜索" onclick="lib.s_earch('keyword');return false;" class="go_search">
+				<div class="search_result" style="display:none" id="getsearch"></div>
+			</div>
+			<div class="navigation">
+				<ul>
+					<li class="nav_home"><a href="{$_G['path']}" class="nonce"><span>音乐馆</span></a></li>
+					<li class="nav_mv"><a href="{$rewrite['index.php/page/mv/']}"><span>MV</span></a></li>
+					<li class="nav_mymusic"><a href="{$rewrite['user.php/music/index/']}" target="_blank"><span>我的音乐</span></a></li>
+					<li class="nav_musicvip"><a href="{$rewrite['user.php/profile/vip/']}" target="_blank"><span>绿钻</span></a></li>
+				</ul>
+			</div>
+			<div class="sub_navigation">
+				<p class="sub_lib" style="display: block;">
+					<a href="{$_G['path']}">首页</a>|
+					<a href="{$rewrite['index.php/page/rank/']}" class="nonce">发现音乐</a>|
+					<!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a>|
+					<!--{/loop special_class}-->
+					<!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手</a>
+					<!--{/loop singer_class}-->
+				</p>
+				<p class="sub_mv" style="display: none;">
+					<a href="{$rewrite['index.php/page/mv/']}">MV推荐</a>|
+					<!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">MV库</a>
+					<!--{/loop video_class}-->
+				</p>
+				<p class="sub_mymusic" style="display: none;">
+					<a href="{$rewrite['user.php/music/index/']}" target="_blank">我上传的</a>|
+					<a href="{$rewrite['user.php/music/song/']}" target="_blank">我收藏的</a>|
+					<a href="{$rewrite['user.php/music/song/listen/']}" target="_blank">我听过的</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="main_frame">
+		<div class="layout_1">
+			<div class="side_container">
+				<div class="mod_side_nav">
+					<ul>
+						<li><a href="{$rewrite['index.php/page/rank/']}" class="js_nav">排行榜</a></li>
+						<!--{loop class order=asc}-->
+						<li><a href="{$class['link']}" class="js_nav current_{$class['id']}">{$class['name']}</a></li>
+						<!--{/loop class}-->
+					</ul>
+					<div class="gedan_sort">
+						<div id="tag_0">
+							<h3><span>地域</span><i class="icon_open" onclick="display_tag(0);"></i></h3>
+							<ol style="display:none">
+								<!--{loop tag type=0 order=asc}-->
+								<li><a href="{$tag['link']}" target="_blank" title="{$tag['title']}">{$tag['title']}</a></li>
+								<!--{/loop tag}-->
+							</ol>
+						</div>
+						<div id="tag_1">
+							<h3><span>曲风</span><i class="icon_open" onclick="display_tag(1);"></i></h3>
+							<ol style="display:none">
+								<!--{loop tag type=1 order=asc}-->
+								<li><a href="{$tag['link']}" target="_blank" title="{$tag['title']}">{$tag['title']}</a></li>
+								<!--{/loop tag}-->
+							</ol>
+						</div>
+						<div id="tag_2">
+							<h3><span>心情</span><i class="icon_open" onclick="display_tag(2);"></i></h3>
+							<ol style="display:none">
+								<!--{loop tag type=2 order=asc}-->
+								<li><a href="{$tag['link']}" target="_blank" title="{$tag['title']}">{$tag['title']}</a></li>
+								<!--{/loop tag}-->
+							</ol>
+						</div>
+						<div id="tag_3">
+							<h3><span>歌手</span><i class="icon_open" onclick="display_tag(3);"></i></h3>
+							<ol style="display:none">
+								<!--{loop tag type=3 order=asc}-->
+								<li><a href="{$tag['link']}" target="_blank" title="{$tag['title']}">{$tag['title']}</a></li>
+								<!--{/loop tag}-->
+							</ol>
+						</div>
+						<div id="tag_4">
+							<h3><span>语言</span><i class="icon_open" onclick="display_tag(4);"></i></h3>
+							<ol style="display:none">
+								<!--{loop tag type=4 order=asc}-->
+								<li><a href="{$tag['link']}" target="_blank" title="{$tag['title']}">{$tag['title']}</a></li>
+								<!--{/loop tag}-->
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main_container">
+				<div class="rank_title">
+					<h2>{$music['classname']}</h2>
+					<a href="javascript:player_index('class_list', 'ing');" class="btn_play" title="播放">播放</a><a href="javascript:player_index('class_list', 'add');"
+					 class="btn_add" title="添加">添加</a>
+					<p class="rank_music_info">
+						<strong>{$page['data']} 首歌</strong>
+					</p>
+				</div>
+				<div class="music_list class_songlist">
+					<div class="music_list_cp">
+						<label for="checkall"><input type="checkbox" onclick="lib.quanxuan('class_list');" id="checkall">全选</label>
+					</div>
+					<ol id="class_list">
+						<!--{loop music page=30 class=this}-->
+						<li onmouseover="this.className='play_hover'" onmouseout="this.className=''"><input type="checkbox" value="{$music['id']}">
+							<span class="list_no">{$music['i']}</span>
+							<!--{if('{$music['addtime style=Y-m-d']}'==date('Y-m-d'))}--><span class="rank_new"><!--{else}--><span class="rank_normal"><!--{/if}--></span>
+							<div class="music_name">
+								<span class="txt"><a href="{$music['link']}" target="_blank" title="{$music['name']}">{$music['name']}</a></span>
+							</div>
+							<div class="singer_name">
+								<a href="{$music['singerlink']}" target="_blank" title="{$music['singername']}">{$music['singername']}</a>
+							</div>
+							<div class="count">
+								<!--{if({$music['hits']}<100)}--><strong style="width:{$music['hits']}%;"><!--{else}--><strong style="width:100%;"><!--{/if}--></strong>
+							</div>
+							<div class="list_cp">
+								<a href="javascript:player_index({$music['id']}, 'ing');" title="播放" class="btn_play">播放</a><a href="javascript:player_index({$music['id']}, 'add');"
+								 title="添加" class="btn_add">添加</a><a href="javascript:create_fav({$music['id']});" title="收藏" class="btn_like">收藏</a>
+							</div>
+							<span class="play_time">{$music['addtime style=Y-m-d']}</span></li>
+						<!--{/loop music}-->
+					</ol>
+				</div>
+				<div class="mod_page">
+					<a href="{$page['up']}" title="上一页" class="prev"><span>&lt;</span></a><a href="{$page['first']}"><span>首页</span></a>{$page['number
+					10']}<a href="{$page['last']}"><span>尾页</span></a><a href="{$page['down']}" title="下一页" class="next"><span>&gt;</span></a>
+					<!--{pagestyle <a href="[link]"><span>|<a class="current"><span>|</span></a>}-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--{require 'bottom.html'}-->
+	<!--{require 'tips.html'}-->
+	<!--{require 'visitor.html'}-->
+</body>
+
+</html>

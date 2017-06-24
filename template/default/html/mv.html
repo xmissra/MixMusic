@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>MV推荐 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/index.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/mv_index.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/tips.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/visitor.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['tempath']}js/jquery.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/menu.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/visitor.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/index.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/music/target/']}';
+var _menu = 'video';
+</script>
+</head>
+<body>
+<div class="frame_top">
+	<!--{require 'top.html'}-->
+	<div class="main_top">
+		<h1 class="frame_logo"><a href="{$_G['path']}" class="logo">{$_G['name']}</a></h1>
+		<div class="frame_search">
+			<input type="text" value="找到好音乐" class="search_text" id="keyword" onfocus="if(this.value=='找到好音乐'){this.value='';}$('.frame_search').addClass('search_focus');" onblur="if(this.value==''){this.value='找到好音乐';}$('.frame_search').removeClass('search_focus');lib.s_onblur();" onkeyup="get_search(this.value);">
+			<input type="button" value="搜索" onclick="lib.s_earch('keyword');return false;" class="go_search">
+			<div class="search_result" style="display:none" id="getsearch"></div>
+		</div>
+		<div class="navigation">
+			<ul>
+				<li class="nav_home"><a href="{$_G['path']}"><span>音乐馆</span></a></li>
+				<li class="nav_mv"><a href="{$rewrite['index.php/page/mv/']}" class="nonce"><span>MV</span></a></li>
+				<li class="nav_mymusic"><a href="{$rewrite['user.php/music/index/']}" target="_blank"><span>我的音乐</span></a></li>
+				<li class="nav_musicvip"><a href="{$rewrite['user.php/profile/vip/']}" target="_blank"><span>绿钻</span></a></li>
+			</ul>
+		</div>
+		<div class="sub_navigation">
+			<p class="sub_lib" style="display: none;">
+				<a href="{$_G['path']}">首页</a>|
+				<a href="{$rewrite['index.php/page/rank/']}">发现音乐</a>|
+				<!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a>|<!--{/loop special_class}-->
+				<!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手</a>|<!--{/loop singer_class}-->
+				<!--{loop article_class count=1 order=asc}--><a href="{$articleclass['link']}">文章</a><!--{/loop article_class}-->
+			</p>
+			<p class="sub_mv" style="display: block;">
+				<a href="{$rewrite['index.php/page/mv/']}" class="nonce">MV推荐</a>|
+				<!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">MV库</a><!--{/loop video_class}-->
+			</p>
+			<p class="sub_mymusic" style="display: none;">
+				<a href="{$rewrite['user.php/music/index/']}" target="_blank">我上传的</a>|
+				<a href="{$rewrite['user.php/music/song/']}" target="_blank">我收藏的</a>|
+				<a href="{$rewrite['user.php/music/song/listen/']}" target="_blank">我听过的</a>
+			</p>
+		</div>
+	</div>
+</div>
+<div class="main_frame">
+	<div class="layout_2">
+		<div class="main_container">
+			<div class="mod_focus_show" id="slide">
+				<a href="javascript:void(0)" id="btnLeft" class="slide_prev">上一个</a><a href="javascript:void(0)" id="btnRight" class="slide_next">下一个</a>
+				<ul class="mod_focus_pic">
+					<!--{loop video count=5 sort=hits}-->
+					<li><img src="{$video['cover']}" title="{$video['name']}" onclick="window.open('{$video['link']}');"></li>
+					<!--{/loop video}-->
+					<!--{loop video count=1 sort=hits}-->
+					<li><img src="{$video['cover']}" title="{$video['name']}" onclick="window.open('{$video['link']}');" width="700" height="320" style="cursor:pointer"></li>
+					<!--{/loop video}-->
+				</ul>
+				<div class="focus_switch" id="ico">
+					<!--{loop video count=5 sort=hits}--><!--{if({$video['i']}==1)}--><a class="current" style="cursor:pointer"><!--{else}--><a style="cursor:pointer"><!--{/if}--></a><!--{/loop video}-->
+				</div>
+			</div>
+			<div class="mod_mv">
+				<div class="title">
+					<h2>MV首播</h2>
+				</div>
+				<div class="mod_content">
+					<div class="slide_content">
+						<ul class="mod_mv_list">
+							<!--{loop video count=8}-->
+							<li>
+							<a href="{$video['link']}" target="_blank" class="mod_poster_160" title="{$video['name']}">
+							<img src="{$video['cover']}">
+							<span class="icon_play" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+							<!--{if('{$video['addtime style=Y-m-d']}'==date('Y-m-d'))}--><span class="icon_today"></span><!--{/if}-->
+							</a>
+							<p>
+								<a href="{$video['link']}" target="_blank" class="mv_name" title="{$video['name']}">{$video['name']}</a>
+							</p>
+							<p>
+								<a href="{$video['singerlink']}" target="_blank" class="singer_name" title="{$video['singername']}">{$video['singername']}</a>
+							</p>
+							<p>
+							{$video['addtime style=Y-m-d H:i:s']}
+							</p>
+							</li>
+							<!--{/loop video}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mod_hot_mv">
+				<div class="title">
+					<h2>MV热播</h2>
+				</div>
+				<div class="mod_content">
+					<div class="slide_content">
+						<ul class="mod_mv_list">
+							<!--{loop video count=8 start=6 sort=hits}-->
+							<li>
+							<a href="{$video['link']}" target="_blank" class="mod_poster_160" title="{$video['name']}">
+							<img src="{$video['cover']}">
+							<span class="icon_play" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+							</a>
+							<p>
+								<a href="{$video['link']}" target="_blank" class="mv_name" title="{$video['name']}">{$video['name']}</a>
+							</p>
+							<p>
+								<a href="{$video['singerlink']}" target="_blank" class="singer_name" title="{$video['singername']}">{$video['singername']}</a>
+							</p>
+							<p>
+							<span class="count">{$video['hits']}</span>
+							<span class="date">{$video['addtime style=Y-m-d']}</span>
+							</p>
+							</li>
+							<!--{/loop video}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="side_container">
+            		<div class="mod_mv_index">
+            			<div class="title">
+                			<h2>MV索引</h2>
+                		</div>
+                		<div class="mod_content">
+					<ul><!--{loop video_class order=asc}-->
+						<li><a href="{$videoclass['link']}" target="_blank" title="{$videoclass['name']}">{$videoclass['name']}</a></li>
+					<!--{/loop video_class}--></ul>
+                		</div>
+            		</div>
+			<div class="mod_24hours">
+				<div class="title">
+					<h2>24小时热播榜</h2>
+				</div>
+				<div class="mod_content">
+					<ol>
+						<!--{loop video count=1 start=14 sort=hits}-->
+						<li class="rank_top">
+						<a class="mod_poster" href="{$video['link']}" target="_blank" title="{$video['name']}"><img src="{$video['cover']}"><em>1</em></a>
+						<p class="mv_info">
+							<a href="{$video['link']}" target="_blank" title="{$video['name']}">{$video['name']}</a>-
+							<a href="{$video['singerlink']}" target="_blank" title="{$video['singername']}">{$video['singername']}</a>
+						</p>
+						<span class="count">{$video['hits']}</span>
+						</li>
+						<!--{/loop video}-->
+						<!--{loop video count=9 start=15 sort=hits}-->
+						<li>
+						<em>{$video['i']}</em>
+						<p class="mv_info">
+							<a href="{$video['link']}" target="_blank" class="mv_name" title="{$video['name']}">{$video['name']}</a>-
+							<a href="{$video['singerlink']}" target="_blank" title="{$video['singername']}">{$video['singername']}</a>
+						</p>
+						<span class="count">{$video['hits']}</span>
+						</li>
+						<!--{/loop video}-->
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--{require 'bottom.html'}-->
+<!--{require 'tips.html'}-->
+<!--{require 'visitor.html'}-->
+</body>
+</html>

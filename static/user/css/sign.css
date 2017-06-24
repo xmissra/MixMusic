@@ -1,0 +1,153 @@
+.user_sign{
+	width:218px;
+	height:42px;
+	margin:0 auto;
+	position:relative;
+	z-index:1;
+	color:#ffffff;
+	cursor:pointer;
+	border:0 none
+}
+.user_sign:link{
+	color:#ffffff;
+	text-decoration:none
+}
+.user_sign:visited{
+	color:#ffffff;
+	text-decoration:none
+}
+.user_sign:hover{
+	color:#ffffff;
+	text-decoration:none
+}
+.user_sign:active{
+	color:#ffffff;
+	text-decoration:none
+}
+.user_sign_but{
+	background:url(../images/sign.gif) no-repeat;
+	width:218px;
+	height:42px;
+	display:inline;
+	float:left;
+	cursor:pointer;
+	border:0 none;
+	position:absolute
+}
+.user_sign_but:hover{
+	background-position:0 -43px
+}
+.user_sign span.date,.user_sign span.week{
+	display:block;
+	height:15px;
+	position:absolute;
+	text-align:center;
+	width:40px;
+	z-index:1
+}
+.user_sign span.date{
+	font-size:12px;
+	left:8px;
+	top:5px
+}
+.user_sign span.week{
+	height:20px;
+	left:2px;
+	overflow:hidden;
+	top:21px;
+	width:50px
+}
+.user_sign span.time_tip{
+	font-size:11px;
+	position:absolute;
+	right:13px;
+	top:5px;
+	z-index:1
+}
+.user_sign strong.time{
+	font-weight:normal;
+	height:20px;
+	position:absolute;
+	right:6px;
+	text-align:center;
+	top:21px;
+	width:36px;
+	z-index:1
+}
+.calendarbox{
+	width:230px;
+	margin:0 auto;
+	text-align:center;
+	overflow:hidden
+}
+.calendarbox ul{
+	margin:0 auto;
+	width:224px
+}
+.calendarbox li.calendarli,.calendarbox li.calendarblank{
+	float:left;
+	margin:1px;
+	width:30px;
+	height:30px;
+	background:#FFF;
+	color:#ccc;
+	display:inline;
+	line-height:30px
+}
+.calendarbox li.calendarblank{
+	background:none
+}
+.calendarbox li a{
+	display:block
+}
+.calendarbox li.calendarweek{
+	background:#FFF;
+	font-weight:bold;
+	color:#666
+}
+.calendarbox li.on_link,.calendarbox li.on_today,.calendarbox li.on_select{
+	text-align:left
+}
+.calendarbox li.on_link a,.calendarbox li.on_today a,.calendarbox li.on_select a{
+	width:28px;
+	height:28px;
+	line-height:28px;
+	background:#E9F2FC;
+	border:1px solid #BCD7F6;
+	text-align:center
+}
+.calendarbox li.on_link a{
+	background:#E9F2FC;
+	border:1px solid #BCD7F6
+}
+.calendarbox li.on_link a:hover{
+	border:1px solid #8FBCF0
+}
+.calendarbox li.on_today a{
+	background:#F7EEB8;
+	border:1px solid #E0D486
+}
+.calendarbox li.on_select a{
+	background:#D3E7FC;
+	border:1px solid #8FBCF0
+}
+.dayevents{
+	position:absolute;
+	padding:0 2px 0 0
+}
+.dayevents ul{
+	margin:0;
+	width:auto;
+	background:#FFF;
+	border:1px solid #C9C9C9
+}
+.calendarbox li.dayeventsli{
+	float:none;
+	padding:0 20px 0 20px;
+	width:auto;
+	height:auto;
+	background-position:10px 14px;
+	text-align:left;
+	line-height:28px;
+	display:block
+}

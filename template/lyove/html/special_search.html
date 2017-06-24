@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}"/>
+<title>{$special['search']} - 搜索专辑 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}"/>
+<meta name="Description" content="{$_G['description']}"/>
+<link rel="stylesheet" href="{$_G['path']}static/pack/asynctips/asynctips.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/asyncbox.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/common.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/layout.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/hfsp.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/music.min.css" type="text/css"/>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var connect_url = '{$rewrite['user.php/people/connect/']}';
+var reg_open = <!--{eval}-->return IN_REGOPEN;<!--{/eval}-->;
+</script>
+<script type="text/javascript" src="{$_G['tempath']}js/scrolltop.js"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div class="css_sprites_x header_bg_ps">
+		<div class="container">
+			<div class="main_oper">
+				<div id="logo" class="fl">
+					<a href="{$_G['path']}"><img src="{$_G['tempath']}css/logo.gif" width="134" height="75"></a>
+				</div>
+				<div id="h_search" class="fl h_search">
+					<div class="option_selected" id="search_option_selected">
+						<a href="javascript:void(0)" id="st" target="_self">音乐</a>
+					</div>
+					<div class="option_list" id="search_option_list">
+						<ul>
+							<li class="selected"><a href="javascript:void(0)" target="_self">音乐</a></li>
+							<li><a href="javascript:void(0)" target="_self">专辑</a></li>
+							<li><a href="javascript:void(0)" target="_self">歌手</a></li>
+							<li><a href="javascript:void(0)" target="_self">视频</a></li>
+						</ul>
+					</div>
+					<div class="search_box">
+						<input type="text" onfocus="this.value=''" id="sq" value="请输入查询关键字！">
+						<button type="submit" id="hsearch">搜索</button>
+					</div>
+				</div>
+				<div class="fr">
+					<div id="site_quick" class="fr black_loginBfo">
+						<span id="getlogin">
+						<script type="text/javascript">get_login();</script>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="main_oper">
+				<div id="menu_sec">
+					<ul id="nav_sec">
+						<li class="mainlevel_sec_nol"><a href="{$_G['path']}">首页</a></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_sec"><!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手库</a><!--{/loop singer_class}--></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_sec"><!--{loop class count=1 order=asc}--><a href="{$class['link']}">发现音乐</a><!--{/loop class}--></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_sec"><!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a><!--{/loop special_class}--></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_sec"><!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">视频</a><!--{/loop video_class}--></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_sec_nol"><a href="{$_G['path']}user.php">用户中心</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="picturePage">
+		<div class="com_title fc_4d9900">
+			<div class="comttl_txt1">
+				以下为搜索专辑“{$special['search']}”的结果
+			</div>
+		</div>
+		<div class="album_List">
+			<!--{loop special page=15}-->
+			<dl class="im_album">
+				<dt><a href="{$special['link']}" target="_blank"><img src="{$special['cover']}" title="{$special['name']}" width="174" height="174"></a></dt>
+				<dd class="title"><a href="{$special['link']}" target="_blank">{$special['name']}</a></dd>
+				<dd class="futtl"><a href="{$special['singerlink']}" target="_blank">{$special['singername']}</a></dd>
+			</dl>
+			<!--{/loop special}-->
+			<div class="hr_10">
+			</div>
+			<div class="pic_fenye">
+				<div id="com_page">
+					<span class="characters"><a href="{$page['first']}">首页</a></span>
+					<span class="characters"><a href="{$page['up']}">上一页</a></span>
+					{$page['number 10']}
+					<span class="characters"><a href="{$page['down']}">下一页</a></span>
+					<span class="characters"><a href="{$page['last']}">尾页</a></span>
+					<!--{pagestyle <a href="[link]">|<a class="bold">|</a>}-->
+				</div>
+			</div>
+			<div class="hr_10">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hr_10">
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

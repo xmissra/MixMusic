@@ -1,0 +1,654 @@
+.crumb{
+	font-size:12px;
+	font-weight:normal;
+	line-height:36px;
+	height:36px;
+	color:#000
+}
+.crumb a{
+	color:#000
+}
+.crumb b{
+	font-weight:400;
+	color:#666
+}
+.mb10{
+	margin-bottom:10px
+}
+.hotGeshou{
+	padding:0 0 15px
+}
+.hotGeshou li{
+	float:left;
+	width:50px;
+	margin:15px 0 0 22px;
+	display:inline
+}
+.hotGeshou li a img{
+	display:block;
+	width:50px;
+	height:50px
+}
+.hotGeshou li a span{
+	display:block;
+	width:50px;
+	height:18px;
+	line-height:18px;
+	text-align:center;
+	font-size:12px;
+	overflow:hidden;
+	margin-top:4px
+}
+.rankBox{
+	overflow:hidden;
+	width:100%;
+	padding-top:5px
+}
+.rankBox ol{
+	overflow:hidden;
+	zoom:1;
+	width:100%
+}
+.rankBox ol li{
+	width:213px;
+	line-height:28px;
+	height:28px;
+	overflow:hidden;
+	float:left;
+	display:inline;
+	margin:0 11px -1px 15px;
+	padding:3px 0 3px;
+	border-bottom:1px solid #f5f5f5
+}
+.rankBox ol li span{
+	width:30px;
+	color:#B1B1B1;
+	float:left
+}
+.rankBox ol li span.num{
+	font-weight:bold;
+	color:#F00
+}
+.rankBox ol li a{
+	float:left;
+	font-size:14px;
+	width:80px;
+	overflow:hidden;
+	display:inline-block;
+	height:28px
+}
+.rankBox ol li span.singer_title{
+	width:90px;
+	height:28px;
+	overflow:hidden
+}
+.rankBox ol li span.singer_title a{
+	width:90px
+}
+.rankBox ol li span.songer{
+	width:52px;
+	*width:47px;
+	height:28px;
+	overflow:hidden
+}
+.rankBox ol li span.songer a{
+	font-size:12px;
+	width:52px;
+	*width:47px;
+	color:#999;
+	text-align:right
+}
+.rankBox ol li span.songer a:hover{
+	color:#390
+}
+.rankBox ol li input{
+	float:left;
+	margin:10px 4px 0 0;
+	*margin:5px 2px 0 0;
+	display:inline
+}
+.rankBox ol li .add{
+	background:url(icon.png) 0 -73px no-repeat;
+	text-indent:-999em;
+	float:right;
+	height:28px;
+	width:20px;
+	display:block
+}
+.searchPage{
+	font-family:Microsoft YaHei,Arial,Tahoma,hiragino sans gb,Helvetica
+}
+.searchL{
+	float:left;
+	width:640px
+}
+.searchR{
+	float:right;
+	width:300px
+}
+.searchPage .soAllNum{
+	font-size:14px;
+	font-weight:400;
+	margin-top:20px
+}
+.searchPage .soAllNum .soCi{
+	color:#c00
+}
+.searchNav{
+	background:url(search.png) 0 100% repeat-x;
+	margin:20px 0
+}
+.searchNav li{
+	float:left;
+	width:120px;
+	height:36px;
+	line-height:36px;
+	text-align:center;
+	border:1px solid #dedede;
+	margin-right:5px;
+	display:inline
+}
+.searchNav li a{
+	font-size:14px;
+	display:block;
+	width:100%;
+	height:100%;
+	background:#f4f4f4
+}
+.searchNav li a:hover{
+	background:#dedede;
+	text-decoration:none
+}
+.searchNav li.current{
+	border:1px solid #34930c
+}
+.searchNav li.current a{
+	background:#3ba60d;
+	color:#fff
+}
+.searchNav li.current a:hover{
+	text-decoration:none;
+	cursor:default
+}
+.searchNav li .disabled{
+	cursor:default;
+	color:#999
+}
+.searchNav li .disabled:hover{
+	background:#f4f4f4
+}
+.soTopBox{
+	padding:0 0 15px;
+	border-bottom:1px solid #f5f5f5;
+	margin-bottom:15px
+}
+.soTopBox .fl{
+	width:100px
+}
+.soTopBox .fl .t-i img{
+	width:100px;
+	height:100px;
+	border-radius:5px
+}
+.soTopBox .fr{
+	width:525px
+}
+.soTopBox .fr h2{
+	font:400 18px/30px Microsoft YaHei;
+	height:30px;
+	overflow:hidden
+}
+.soTopBox .fr h2 a{
+	color:#55a642
+}
+.soTopBox .fr h2 a .soCi{
+	color:#c00
+}
+.soTopBox .soBtn{
+	padding:6px 0 5px
+}
+.soTopBox .soBtn a{
+	width:83px;
+	height:25px;
+	float:left;
+	margin-right:6px;
+	background:url(search.png) -999em -999em no-repeat
+}
+.soTopBox .soBtn a.soBtn1{
+	width:142px;
+	background-position:0 -18px
+}
+.soTopBox .soBtn a.soBtn2{
+	background-position:0 -44px
+}
+.soTopBox .soInfo{
+	line-height:20px;
+	height:20px;
+	overflow:hidden
+}
+.soTopBox .soInfo2{
+	line-height:20px;
+	height:20px;
+	overflow:hidden;
+	color:#999
+}
+.soTopBox .soInfo span{
+	padding-right:20px
+}
+.soTopBox .soInfo span a{
+	color:#5ba91c;
+	font-weight:800;
+	padding:0 3px
+}
+.soTopBox .soInfo span a:hover{
+	color:#55a642
+}
+.maskBox{
+	width:100px;
+	height:100px;
+	display:block;
+	overflow:hidden;
+	position:relative
+}
+.maskBox .t-i img{
+	width:100px;
+	height:100px;
+	display:block;
+	border-radius:2px
+}
+.maskBox .maskDis{
+	display:none;
+	z-index:99
+}
+.maskBox .maskBtn{
+	position:absolute;
+	right:10px;
+	bottom:10px;
+	width:24px;
+	height:24px;
+	display:block;
+	background:url(playIco.png) 0 -24px no-repeat
+}
+.maskBox .maskBtn:hover{
+	background:url(playIco.png) 0 0 no-repeat
+}
+.soItem{
+	padding:15px 0 15px;
+	border-bottom:1px solid #f5f5f5
+}
+.soItem .fl{
+	width:100px
+}
+.soItem .fl .t-i img{
+	width:100px;
+	height:100px;
+	border-radius:5px;
+	background:url(loading.gif) center center no-repeat
+}
+.soItem .fr{
+	width:525px
+}
+.soItem .fr h2{
+	font:400 18px/26px Microsoft YaHei;
+	height:26px;
+	overflow:hidden
+}
+.soItem .fr h2 a{
+	color:#55a642
+}
+.soItem .fr h2 a .soCi{
+	color:#c00
+}
+.soItem .soBtn{
+	padding:3px 0 5px;
+	display:none
+}
+.soItem .soBtn a{
+	width:83px;
+	height:25px;
+	float:left;
+	margin-right:6px;
+	background:url(search.png) -999em -999em no-repeat
+}
+.soItem .soBtn a.soBtn1{
+	width:142px;
+	background-position:0 -18px
+}
+.soItem .soBtn a.soBtn2{
+	background-position:0 -44px
+}
+.soItem .soInfo{
+	line-height:20px;
+	height:20px;
+	overflow:hidden
+}
+.soItem .soInfo2{
+	line-height:20px;
+	height:20px;
+	overflow:hidden;
+	color:#999
+}
+.soItem .soInfo span{
+	padding-right:20px
+}
+.soItem .soInfo span a{
+	color:#5ba91c;
+	font-weight:800;
+	padding:0 3px
+}
+.soItem .soInfo span a:hover{
+	color:#55a642
+}
+.soItemHover{
+	background:#f9f9f9;
+	border-bottom:1px solid #4cbd3e
+}
+.songList{
+	padding:0 0 5px;
+	margin:0 auto
+}
+.songList ul{
+	width:100%;
+	display:inline;
+	overflow:hidden;
+	zoom:1
+}
+.songList li{
+	width:100%;
+	line-height:30px;
+	height:30px;
+	overflow:hidden;
+	margin-bottom:5px;
+	display:block;
+	float:left;
+	border-bottom:1px solid #f5f5f5;
+	padding:2px 0 6px
+}
+.songList li .songNum{
+	width:30px;
+	height:30px;
+	color:#b1b1b1;
+	float:left;
+	overflow:hidden
+}
+.songList li .topRed{
+	font-weight:bold;
+	color:#F00
+}
+.songList li .songName{
+	float:left;
+	font-size:14px;
+	width:250px;
+	overflow:hidden;
+	height:30px
+}
+.songList li .singerName{
+	float:left;
+	font-size:12px;
+	width:100px;
+	overflow:hidden;
+	height:30px;
+	color:#666
+}
+.songList li .albumName{
+	float:left;
+	font-size:12px;
+	width:140px;
+	overflow:hidden;
+	height:30px;
+	color:#666
+}
+.songList li .check{
+	float:left;
+	margin:8px 4px 0 0;
+	*margin:5px 2px 0 0;
+	display:inline
+}
+.songList li .add{
+	background-position:0 -71px;
+	float:right;
+	height:30px;
+	width:20px;
+	margin:0 0 0 4px;
+	display:inline
+}
+.songList li .play{
+	background-position:0 -38px;
+	float:right;
+	height:30px;
+	width:20px;
+	margin:0 0 0 4px;
+	display:inline
+}
+.songList li .down{
+	background-position:0 -104px;
+	float:right;
+	height:30px;
+	width:20px;
+	margin:0 0 0 4px;
+	display:inline
+}
+.songList li .singerName:hover,.songList li .albumName:hover{
+	color:#55a642
+}
+.songList li a .soCi{
+	color:#c00
+}
+.soBtnTp .setPlay{
+	padding-bottom:5px
+}
+.soBtnFt{
+	
+}
+.setPlay{
+	border:0 none;
+	text-align:left;
+	padding:5px 0 10px;
+	margin:0
+}
+.setPlay a{
+	margin-right:10px;
+	margin-left:0
+}
+.pagesNew{
+	padding:30px 0 30px;
+	text-align:center;
+	height:36px
+}
+.pagesNew a{
+	border:1px solid #ccc;
+	padding:4px 10px;
+	margin:2px;
+	color:#333;
+	text-decoration:none
+}
+.pagesNew a:hover{
+	border:1px solid #3ba60d;
+	color:#fff;
+	background:#3ba60d
+}
+.pagesNew span.current{
+	border:1px solid #3ba60d;
+	padding:4px 10px;
+	margin:2px;
+	color:#fff;
+	background:#3ba60d
+}
+.pagesNew span.disabled{
+	border:1px solid #eee;
+	padding:4px 10px;
+	margin:2px;
+	color:#999
+}
+#pager{
+	
+}
+#pager ul.pages{
+	display:block;
+	border:none;
+	text-transform:uppercase;
+	font-size:12px;
+	padding:0;
+	overflow:hidden;
+	zoom:1
+}
+#pager ul.pages li{
+	float:left;
+	border:1px solid #ccc;
+	text-decoration:none;
+	margin:0 5px 0 0;
+	padding:5px 10px
+}
+#pager ul.pages li:hover{
+	border:1px solid #3ba60d;
+	background-color:#3ba60d;
+	color:#fff
+}
+#pager ul.pages li.pgEmpty{
+	border:1px solid #eee;
+	color:#ccc
+}
+#pager ul.pages li.pgCurrent{
+	border:1px solid #3ba60d;
+	color:#fff;
+	font-weight:700;
+	background-color:#3ba60d
+}
+#pager ul.pages li.pgEmpty:hover{
+	border:1px solid #eee;
+	color:#ccc;
+	background:#fff
+}
+.areaTit{
+	line-height:20px;
+	height:20px;
+	padding:10px 0
+}
+.areaTit h2{
+	font-weight:400;
+	font-size:18px;
+	color:#333
+}
+.areaBox{
+	border:1px solid #e5e5e5
+}
+.searchRbang{
+	margin-top:58px
+}
+.searchRbang .mmList li{
+	line-height:40px;
+	height:40px
+}
+.searchRbang .mmList li .num{
+	width:30px;
+	font-size:18px;
+	text-align:center;
+	color:#999;
+	line-height:40px;
+	height:40px;
+	float:left;
+	padding-left:10px
+}
+.searchRbang .mmList li .numHot{
+	color:#ff6600
+}
+.searchRbang .mmList .rankIco{
+	width:8px;
+	height:8px;
+	float:left;
+	padding:0 10px 0 5px;
+	margin-top:17px
+}
+.searchRbang .mmList .rankIco i{
+	display:block;
+	width:8px;
+	height:8px
+}
+.rankUp{
+	background:url(search.png) 0 0 no-repeat
+}
+.rankDown{
+	background:url(search.png) -8px 0 no-repeat
+}
+.rankLine{
+	background:url(search.png) -16px 0 no-repeat
+}
+.searchRbang .mmList .songName{
+	font-size:14px;
+	float:left;
+	line-height:40px;
+	height:40px;
+	width:135px;
+	overflow:hidden
+}
+.searchRbang .mmList .singerName{
+	color:#999;
+	float:left;
+	line-height:40px;
+	height:40px;
+	width:80px;
+	margin-left:10px;
+	display:inline;
+	overflow:hidden
+}
+.searchRbang .mmList .singerName:hover{
+	color:#55a642
+}
+.searchRsinger ul{
+	padding:5px 0 15px
+}
+.searchRsinger ul li{
+	float:left;
+	width:60px;
+	margin:10px 0 0 12px;
+	display:inline
+}
+.searchRsinger ul li a img{
+	display:block;
+	width:60px;
+	height:60px
+}
+.searchRsinger ul li a span{
+	display:block;
+	width:60px;
+	height:18px;
+	line-height:18px;
+	font-size:12px;
+	overflow:hidden;
+	margin-top:4px;
+	text-align:center
+}
+.searchRtag p{
+	padding:8px;
+	color:#ddd;
+	line-height:28px
+}
+.searchRtag p a{
+	display:inline-block;
+	margin:0 6px;
+	text-decoration:none;
+	color:#666;
+	font-size:14px
+}
+.searchRtag p a:hover{
+	color:#55a642;
+	text-decoration:underline
+}
+.searchRtag p a.bold{
+	font-weight:800
+}
+.searchRtag p a.f14{
+	font-size:14px
+}
+.searchRtag p a.f16{
+	font-size:16px
+}
+.searchRtag p a.green,.searchRtag p a.green:hover{
+	color:#55a642
+}
+.searchRtag p a.orange,.searchRtag p a.orange:hover{
+	color:#f60
+}
+.searchRtag p a.red,.searchRtag p a.red:hover{
+	color:#c00
+}

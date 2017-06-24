@@ -1,0 +1,30 @@
+<div class="m_player m_player_folded" id="divplayer" style="left: -540px;">
+	<div class="m_player_dock" id="qianweiplayer">
+		<script type="text/javascript">CMP.write('cmp', '440', '100%', temp_url + 'widget/v.swf?php=box', {lists:''}, {wmode:'transparent'});</script>
+	</div>
+	<span class="active_tip" id="spanaddtips" style="top: 0px; display: none;"></span>
+	<span title="展开播放列表" class="open_list" id="spansongnum1"><span id="spansongnums">0</span></span>
+	<span title="显示歌词" class="btn_lyrics_disabled" id="btnlrc"></span>
+	<button type="button" class="folded_bt" style="cursor:pointer;" title="点击展开" id="btnfold"></button>
+	<div class="play_list_frame" id="divplayframe" style="display: none; opacity: 1;">
+		<div class="play_list_title">
+			<ul style="width:270px;"><li class="current"><a style="cursor:pointer;">播放列表</a><i></i></li></ul>
+			<strong title="收起播放列表" class="close_list" id="btnclose"></strong>
+		</div>
+		<div class="play_list">
+			<div class="play_list_point" id="divnulllist">
+				<div><h4>您当前还未添加任何歌曲</h4><br /></div>
+			</div>
+			<div class="play_list_main">
+				<div class="single_list">
+				    <ul id="jp-playlist-box"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="y_player_lyrics" id="player_lyrics_pannel" style="display:none;">
+		<div class="lyrics_text" id="lyric"></div>
+		<div class="lyrics_bg"></div>
+		<span class="close_lyrics" id="closelrcpannel"></span>
+	</div>
+</div>

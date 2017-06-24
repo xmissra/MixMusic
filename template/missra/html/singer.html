@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$singer['name']} - {$singer['classname']} - {$_G['name']}</title>
+<meta name="Keywords" content="{$singer['name']},{$singer['classname']}" />
+<meta name="Description" content="{$singer['name']},{$singer['classname']},{$_G['name']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/singerNew.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+var down_url = '{$rewrite['index.php/misc/mod/down/_mid/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; {$singer['classname']} &gt; {$singer['name']}</h2>
+</div>
+<div class="box mb10">
+<div class="singerWrap clearfix">
+  <div class="singerTop clearfix">
+  <div class="t-i"><img src="{$singer['cover']}"></div>
+  <div class="singerInfo">
+  <div class="t-t clearfix"><h1>{$singer['name']}</h1><span class="rankIcon">{$singer['nick']}</span><span class="redu">热度：<em>{$singer['hits']}</em></span></div>
+  <div class="i-t">
+<p><strong>创建人：</strong><a href="{$singer['ulink']}" target="_blank">{$singer['uname']}</a></p>
+<p><strong>所属分类：</strong><a href="{$singer['classlink']}" target="_blank">{$singer['classname']}</a>&nbsp;&nbsp;&nbsp;&nbsp;<strong>更新时间：</strong>{$singer['addtime style=Y-m-d']}</p>
+<p class="singerJiajie"><strong>简介：</strong>{$singer['intro len=85']}&nbsp;<a href="javascript:{};" class="showJianjie">更多&gt;</a></p>
+</div>
+<div class="clearfix singerBtn"><a style="cursor:pointer;" onclick="lib.all_play('<!--{loop music sort=hits singer=this}-->{$music['id']}/<!--{/loop music}-->');" class="playSinger"></a></div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".showJianjie").click(function(){
+		$(".jianjieAll").show();
+		$(".closeInfo").show();
+		return false;
+	});
+	$(".closeInfo").click(function(){
+		$(".closeInfo").hide();
+		$(".jianjieAll").hide();
+		return false;
+	})
+})
+</script>
+<div class="closeInfo clearfix"><a href="javascript:{};">关闭</a></div>
+<div class="jianjieAll">
+<p>{$singer['intros']}</p>
+</div>
+</div>
+<div class="singerNav">
+  <ul class="clearfix">
+  <li class="singerNav1"><a class="active"><em></em><span>音乐</span></a></li>
+  <li class="singerNav2"><a href="javascript:{};"><em></em><span>视频</span></a></li>
+  <li class="singerNav4"><a href="javascript:{};"><em></em><span>专辑</span></a></li>
+  </ul>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".singerNav1").click(function(){
+		$(".singerMusic").show();
+		$(".singerNav1").html('<a class="active"><em></em><span>音乐</span></a>');
+		$(".mvList").hide();
+		$(".singerNav2").html('<a href="javascript:{};"><em></em><span>视频</span></a>');
+		$(".albumList").hide();
+		$(".singerNav4").html('<a href="javascript:{};"><em></em><span>专辑</span></a>');
+		return false;
+	});
+	$(".singerNav2").click(function(){
+		$(".mvList").show();
+		$(".singerNav2").html('<a class="active"><em></em><span>视频</span></a>');
+		$(".singerMusic").hide();
+		$(".singerNav1").html('<a href="javascript:{};"><em></em><span>音乐</span></a>');
+		$(".albumList").hide();
+		$(".singerNav4").html('<a href="javascript:{};"><em></em><span>专辑</span></a>');
+		return false;
+	});
+	$(".singerNav4").click(function(){
+		$(".albumList").show();
+		$(".singerNav4").html('<a class="active"><em></em><span>专辑</span></a>');
+		$(".singerMusic").hide();
+		$(".singerNav1").html('<a href="javascript:{};"><em></em><span>音乐</span></a>');
+		$(".mvList").hide();
+		$(".singerNav2").html('<a href="javascript:{};"><em></em><span>视频</span></a>');
+		return false;
+	})
+})
+</script>
+  <div class="singerMain">
+  <div class="singerMusic clearfix">
+  	<ol id="singer_music"><!--{loop music singer=this}--><li><input type="checkbox" value="{$music['id']}" class="check"><span class="songNum">{$music['i']}</span><div class="songName"><a href="{$music['link']}" target="_blank" class="songNameA">{$music['name']}</a></div><a class="down" onclick="window.open(down_url.replace(/_mid/g, {$music['id']}));">下载</a><a class="play" onclick="window.open('{$music['link']}');">试听</a></li><!--{/loop music}--></ol>
+    <div class="setPlay"><a style="cursor:pointer;" onclick="lib.quanxuan('singer_music');" class="setPlayXuan">全选/反选</a><a style="cursor:pointer;" onclick="lib.player('singer_music', 'play');" class="setPlayPlay">播放</a><a style="cursor:pointer;" onclick="lib.all_play('<!--{loop music singer=this}-->{$music['id']}/<!--{/loop music}-->');" class="setPlaySui">全部播放</a></div>
+  </div>
+  <div class="mvList clearfix" style="display:none;">
+	<ul class="clearfix"><!--{loop video singer=this}--><li><a target="_blank" class="t-i" href="{$video['link']}"><img src="{$video['cover']}" title="{$video['name']}"></a><a target="_blank" class="t-t" href="{$video['link']}">{$video['name']}</a><div class="i-t"><p>播放：{$video['hits']}</p></div></li><!--{/loop video}--></ul>
+  </div>
+  <div class="albumList clearfix" style="display:none;">
+  <ul class="clearfix"><!--{loop special singer=this}--><li><a target="_blank" href="{$special['link']}" class="t-i"><img src="{$special['cover']}" title="{$special['name']}"></a><a target="_blank" href="{$special['link']}" class="t-t">{$special['name']}</a><p class="i-t">发行公司：{$special['firm']}</p></li><!--{/loop special}--></ul>
+  </div>
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

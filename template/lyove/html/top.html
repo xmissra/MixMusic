@@ -1,0 +1,29 @@
+<div id="textpage_top" class="textpage_top">
+	<div class="container">
+		<div class="textpage_logo">
+			<a href="{$_G['path']}"><img src="{$_G['tempath']}css/head.jpg" style="margin-top:5px" width="130" height="42"></a>
+		</div>
+		<div class="textpage_menu">
+			<ul class="ffhei fb">
+				<li class="text_left"><a href="{$_G['path']}">首页</a></li>
+				<li class="line"></li>
+				<li><!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手库</a><!--{/loop singer_class}--></li>
+				<li class="line"></li>
+				<li><!--{loop class count=1 order=asc}--><a href="{$class['link']}">发现音乐</a><!--{/loop class}--></li>
+				<li class="line"></li>
+				<li><!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a><!--{/loop special_class}--></li>
+				<li class="line"></li>
+				<li><!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">视频</a><!--{/loop video_class}--></li>
+				<li class="line"></li>
+				<li class="text_right"><a href="{$_G['path']}user.php">用户中心</a></li>
+			</ul>
+		</div>
+		<div class="fr">
+			<div id="site_quick" class="fr gray_loginBfo">
+				<span id="getlogin">
+				<script type="text/javascript">get_login();</script>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

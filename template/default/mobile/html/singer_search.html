@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="{$_G['charset']}">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>{$singer['search']} - 搜索歌手 - {$_G['name']}</title>
+<link href="{$_G['tempath']}css/index.css" rel="stylesheet">
+<link href="{$_G['tempath']}css/rank.css" rel="stylesheet">
+<script src="{$_G['tempath']}js/lib.js" type="text/javascript"></script>
+<script type="text/javascript">
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+</script>
+</head>
+<body>
+<div class="wrap">
+	<header class="mod_header">
+	<i class="music_logo">{$_G['name']}</i>
+	<a href="{$rewrite['index.php/page/map/']}" class="btn_download">导航</a>
+	</header>
+	<nav class="mod_nav">
+	<a href="{$_G['path']}">音乐</a>
+	<a href="{$rewrite['index.php/page/album/']}">专辑</a>
+	<a href="{$rewrite['index.php/page/artist/']}" class="current">歌手</a>
+	<a href="{$rewrite['index.php/page/mtv/']}">视频</a>
+	</nav>
+	<div class="search_box">
+		<div class="mod_search_bar">
+			<div class="search_bar_cont">
+				<input class="search_input" type="text" onclick="this.value=''" id="keyword" value="{$singer['search']}">
+				<span class="icon icon_search">搜索</span>
+			</div>
+			<div class="search_bar_tip_text" style="display:block;cursor:pointer" onclick="lib.s_earch('singer');return false;">
+				搜索
+			</div>
+		</div>
+	</div>
+	<div class="mod_twocol_list mod_twocol_list_special">
+		<h2 class="list_title">搜索“<small style="color:#26A65B">{$singer['search']}</small>”，共找到 <small style="color:#ee5044">{$page['data']}</small> 位歌手。</h2>
+		<ul class="list_container">
+			<!--{loop singer page=10}-->
+			<li class="js_play_radio">
+			<a class="list_main" href="{$singer['link']}">
+			<div class="list_media">
+				<img src="{$singer['cover']}">
+				<span class="icon icon_play"></span>
+			</div>
+			<div class="list_info">
+				<h3 class="list_tit tit_two_row">{$singer['name']}</h3>
+			</div>
+			</a>
+			</li>
+			<!--{/loop singer}-->
+		</ul>
+		<div class="mod_bottom_tips">
+			<a class="mod_bottom_tips__btn" style="cursor:pointer" onclick="getpage({$page['now']}, {$page['all']}, '{$page['down']}')" id="loaded">加载更多歌手...</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

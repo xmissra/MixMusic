@@ -1,0 +1,30 @@
+<script type="text/javascript" src="{$_G['tempath']}js/topcommon.js"></script>
+<div class="top-bar">
+<div class="box clearfix">
+<div class="fl topBarLink"><a class="topBarLink01" style="cursor:pointer;" onclick="setHomepage();">设为首页</a>&nbsp;&nbsp;<a class="topBarLink02" style="cursor:pointer;" onclick="addFavorite();">加入收藏</a></div>
+<div class="fr" id="userinfo"><script type="text/javascript">getlogin();</script></div>
+</div>
+</div>
+<div class="headerWrap">
+<div class="box header clearfix">
+  <div class="logo"><a href="{$_G['path']}"><img src="{$_G['tempath']}css/logo.png" /></a></div>
+  <div class="logoSide clearfix">
+  <div class="history">
+  <div class="historyBox">
+  <div class="historyHd"><p>我听过的歌</p></div>
+  <div class="historyBd" id="listen"><script type="text/javascript">getlisten();</script></div>
+  </div>
+  </div>
+  <div class="search clearfix">
+      <div class="search-bar">
+        <form method="get" onsubmit="lib.s_earch('music', 'music_keyword');return false;">
+        <div class="clearfix" style="z-index:1005; zoom:1;">
+        <input class="search-txt input-value" x-webkit-speech type="text" id="music_keyword" />
+        <button class="search-btn" type="submit">搜索</button>
+        </div>
+      </form>
+      </div>
+  </div>
+  </div>
+</div>
+</div>

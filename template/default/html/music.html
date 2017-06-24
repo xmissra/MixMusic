@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>{$music['name']} - {$music['classname']} - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/index.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/song_details.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/comment.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/tips.css" type="text/css" rel="stylesheet" />
+<link href="{$_G['tempath']}css/visitor.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['tempath']}js/jquery.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/menu.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/visitor.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/music/target/']}';
+var _menu = 'music';
+function switch_tab() {
+        var text = $("#btntab").text();
+        if (text == "评论") {
+                $("#btntab").text("歌词");
+                $("#lyric_tab").hide();
+                $("#comment_tab").show();
+        } else {
+                $("#btntab").text("评论");
+                $("#comment_tab").hide();
+                $("#lyric_tab").show();
+        }
+}
+function copy_lyric() {
+        var browserName = navigator.appName;
+        if (browserName == "Netscape") {
+                lib.t_ips("您的浏览器不支持自动复制，请手工复制！", 0, 3e3);
+        } else if (browserName == "Microsoft Internet Explorer") {
+                clipboardData.setData("Text", $("#lyric").text());
+                lib.t_ips("恭喜，歌词复制成功！", 1, 1e3);
+        }
+}
+function getbitrate() {
+	<!--{eval}-->
+	$audio = getfield('music', 'in_audio', 'in_id', {$music['id']});
+	if(preg_match('/mp3$/', $audio) && is_file(IN_ROOT.$audio)){
+		include_once IN_ROOT.'./source/pack/mp3/class.mp3.php';
+		$kbps = @MP3::Bitrate(IN_ROOT.$audio);
+		return 'return "'.$kbps.' Kbps";';
+	}else{
+		return 'return "'.substr(strrchr($audio, '.'), 1).'";';
+	}
+	<!--{/eval}-->
+}
+function get_tag(str) {
+        var keyword = str + ">";
+        keyword = keyword.replace(/,>/g, "");
+        keyword = keyword.replace(/>/g, "");
+        keyword = keyword.replace(/\//g, "");
+        keyword = keyword.replace(/\\/g, "");
+        keyword = keyword.replace(/\?/g, "");
+        if (keyword) {
+                var tag = '<span class="origin_complaints">歌曲标签：';
+                var strs = keyword.split(",");
+                for (i = 0; i < strs.length; i++) {
+                        tag += '<a href="' + search_url.replace(/target/g, strs[i]) + '" target="_blank">' + strs[i] + "</a>";
+                }
+                tag = tag + "</span>";
+        } else {
+                tag = "歌曲标签：暂无标签";
+        }
+        return tag;
+}
+</script>
+</head>
+<body>
+<div class="frame_top">
+	<!--{require 'top.html'}-->
+	<div class="main_top">
+		<h1 class="frame_logo"><a href="{$_G['path']}" class="logo">{$_G['name']}</a></h1>
+		<div class="frame_search">
+			<input type="text" value="找到好音乐" class="search_text" id="keyword" onfocus="if(this.value=='找到好音乐'){this.value='';}$('.frame_search').addClass('search_focus');" onblur="if(this.value==''){this.value='找到好音乐';}$('.frame_search').removeClass('search_focus');lib.s_onblur();" onkeyup="get_search(this.value);">
+			<input type="button" value="搜索" onclick="lib.s_earch('keyword');return false;" class="go_search">
+			<div class="search_result" style="display:none" id="getsearch"></div>
+		</div>
+		<div class="navigation">
+			<ul>
+				<li class="nav_home"><a href="{$_G['path']}" class="nonce"><span>音乐馆</span></a></li>
+				<li class="nav_mv"><a href="{$rewrite['index.php/page/mv/']}"><span>MV</span></a></li>
+				<li class="nav_mymusic"><a href="{$rewrite['user.php/music/index/']}" target="_blank"><span>我的音乐</span></a></li>
+				<li class="nav_musicvip"><a href="{$rewrite['user.php/profile/vip/']}" target="_blank"><span>绿钻</span></a></li>
+			</ul>
+		</div>
+		<div class="sub_navigation">
+			<p class="sub_lib" style="display: block;">
+				<a href="{$_G['path']}">首页</a>|
+				<a href="{$rewrite['index.php/page/rank/']}" class="nonce">发现音乐</a>|
+				<!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a>|<!--{/loop special_class}-->
+				<!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手</a><!--{/loop singer_class}-->
+			</p>
+			<p class="sub_mv" style="display: none;">
+				<a href="{$rewrite['index.php/page/mv/']}">MV推荐</a>|
+				<!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">MV库</a><!--{/loop video_class}-->
+			</p>
+			<p class="sub_mymusic" style="display: none;">
+				<a href="{$rewrite['user.php/music/index/']}" target="_blank">我上传的</a>|
+				<a href="{$rewrite['user.php/music/song/']}" target="_blank">我收藏的</a>|
+				<a href="{$rewrite['user.php/music/song/listen/']}" target="_blank">我听过的</a>
+			</p>
+		</div>
+	</div>
+</div>
+<div class="main_frame">
+	<div class="layout_2">
+		<div class="main_container">
+			<div class="song_title" style="height:auto;">
+				<h2><span>{$music['name']}</span></h2>
+				<div class="opertate">
+					<a href="javascript:player_index({$music['id']}, 'ing');" title="播放" class="btn_play">播放</a><a href="javascript:player_index({$music['id']}, 'add');" title="添加" class="btn_add">添加</a><a class="btn_down" title="下载" href="javascript:create_down({$music['id']});"></a>
+				</div>
+			</div>
+			<div class="song_detail">
+				<ul class="song_info">
+					<li><span class="origin_complaints">所属分类：<a href="{$music['classlink']}" target="_blank">{$music['classname']}</a></span></li>
+					<li><span class="singer_name">所属歌手：<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a></span></li>
+					<li><span class="album_name">所属专辑：<a href="{$music['speciallink']}" target="_blank">{$music['specialname']}</a></span></li>
+					<li>歌曲音质：<script type="text/javascript">document.write(getbitrate());</script></li>
+					<li>下载权限：<!--{if({$music['grade']}<3)}-->'.({$music['grade']}==1?'绿钻会员':'普通用户').'<!--{else}-->游客下载<!--{/if}--></li>
+					<li>下载扣点：{$music['points']}</li>
+					<li>下载次数：{$music['downhits']}</li>
+					<li>收藏人数：{$music['favhits']}</li>
+					<li>试听人气：{$music['hits']}</li>
+					<li>推荐指数：{$music['best']}</li>
+					<li><span class="origin_complaints">上传用户：<a href="{$music['ulink']}" target="_blank">{$music['uname']}</a></span></li>
+					<li>更新时间：{$music['addtime style=Y-m-d H:i:s']}</li>
+					<li><script type="text/javascript">document.write(get_tag('{$music['tag']}'));</script></li>
+				</ul>
+				<div class="album_assess" id="like"><script type="text/javascript">get_like({$music['id']});</script></div>
+				<div class="op_content">
+					<a href="javascript:create_fav({$music['id']});" class="btn_like"><i class="icon_like"></i><span>收藏</span></a>
+					<a href="javascript:create_like({$music['id']}, 'good');" class="btn_good"><i class="icon_good"></i><span>顶</span></a>
+					<a href="javascript:create_like({$music['id']}, 'bad');" class="btn_bad"><i class="icon_bad"></i><span>踩</span></a>
+					<a href="javascript:switch_tab();" class="btn_share"><i class="icon_share"></i><span id="btntab">评论</span></a>
+				</div>
+			</div>
+			<div class="lyrics" id="comment_tab" style="display:none"><script type="text/javascript">get_comment({$music['id']}, 1);</script></div>
+			<div class="lyrics" id="lyric_tab">
+				<div class="title">
+					<h3>歌词</h3>
+					<p>
+						<a href="javascript:copy_lyric();">复制歌词</a>|<a onclick="location.href=temp_url+'source/down.php?type=lrc&id={$music['id']}';" style="cursor:pointer;">下载LRC歌词</a>
+					</p>
+				</div>
+				<div class="content" id="lyric">{$music['texts']}</div>
+			</div>
+		</div>
+		<div class="side_container">
+			<div class="album_source">
+				<div class="album_cover">
+					<img src="{$music['cover']}">
+				</div>
+				<h4>猜你喜欢</h4>
+				<ol class="recommend_list"><!--{loop music count=10 sort=rand class=auto}-->
+					<li onmouseover="this.className='play_hover';$('#count_{$music['id']}').hide()" onmouseout="this.className='';$('#count_{$music['id']}').show()">
+					<h5><a href="{$music['link']}" title="{$music['name']}">{$music['name len=10']}</a></h5>
+					<span class="count" id="count_{$music['id']}" style="display:inline-block">{$music['hits']}</span>
+					<div class="list_cp">
+						<a href="javascript:player_index({$music['id']}, 'ing');" title="播放" class="btn_play">播放</a><a href="javascript:player_index({$music['id']}, 'add');" title="添加" class="btn_add">添加</a><a href="javascript:create_fav({$music['id']});" title="收藏" class="btn_like">收藏</a>
+					</div>
+					</li>
+				<!--{/loop music}--></ol>
+			</div>
+		</div>
+	</div>
+</div>
+<!--{require 'bottom.html'}-->
+<!--{require 'tips.html'}-->
+<!--{require 'visitor.html'}-->
+</body>
+</html>

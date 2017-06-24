@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$singer['search']} - 搜索歌手 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/singer.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.mb10{margin-bottom:10px}
+.mdBox{border:1px solid #e5e5e5}
+.mdBoxHd{background:#fbfbfb;line-height:38px;height:38px;padding:0 12px}
+.mdBoxHd .fr{color:#999}
+.mdBoxHdTit{font:400 18px/38px Microsoft YaHei;height:38px;overflow:hidden}
+.step01 .search-box{padding:30px 12px 0 170px}
+.step01 .search-box strong{float:left;width:80px;text-align:right;height:32px;line-height:32px;color:#999;font-size:14px}
+.step01 .search-box .search-input{width:350px;float:left;background:url({$_G['tempath']}css/form-line.png) 0 0 repeat-x;line-height:20px;height:20px;border:1px solid #d2d2d2;padding:5px;width:300px;font-size:12px;word-break:break-all;word-wrap:break-word;color:#666}
+.step01 .search-box .search-btn{width:116px;height:32px;float:left;overflow:hidden;background:url({$_G['tempath']}css/search-btn.png) 0 0 no-repeat;border:0 none;cursor:pointer;text-indent:-9999px}
+.filter dd a.singer_{$singer['search']}{background:#55a642;color:#FFF;padding:2px 5px;text-align:center}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 搜索歌手：<font color="#FF6969">{$singer['search']}</font></h2>
+</div>
+<div class="box mb10 singer_box bgWrite" style="border-top:2px solid #7DC03A;">
+<div class="filter">
+  <div class="step01 clearfix">
+   <div class="search-box clearfix">
+    <form method="get" onsubmit="lib.s_earch('singer', 'singer_keyword');return false;">
+    <div class="clearfix"> <strong>歌手名称：</strong>
+     <input type="text" id="singer_keyword" class="input-value input search-input">
+     <input type="submit" class="search-btn" value="搜索">
+    </div>
+    </form>
+   </div>
+  </div>
+    <dl class="clearfix">
+        <dd>
+            <!--{loop singer_class order=asc}--><a href="{$singerclass['link']}">{$singerclass['name']}</a><!--{/loop singer_class}-->
+        </dd>
+    </dl>
+    <dl class="clearfix">
+    	<dd>
+            <a href="{$rewrite['index.php/search/A/']}" class="singer_A">A</a>
+            <a href="{$rewrite['index.php/search/B/']}" class="singer_B">B</a>
+            <a href="{$rewrite['index.php/search/C/']}" class="singer_C">C</a>
+            <a href="{$rewrite['index.php/search/D/']}" class="singer_D">D</a>
+            <a href="{$rewrite['index.php/search/E/']}" class="singer_E">E</a>
+            <a href="{$rewrite['index.php/search/F/']}" class="singer_F">F</a>
+            <a href="{$rewrite['index.php/search/G/']}" class="singer_G">G</a>
+            <a href="{$rewrite['index.php/search/H/']}" class="singer_H">H</a>
+            <a href="{$rewrite['index.php/search/I/']}" class="singer_I">I</a>
+            <a href="{$rewrite['index.php/search/J/']}" class="singer_J">J</a>
+            <a href="{$rewrite['index.php/search/K/']}" class="singer_K">K</a>
+            <a href="{$rewrite['index.php/search/L/']}" class="singer_L">L</a>
+            <a href="{$rewrite['index.php/search/M/']}" class="singer_M">M</a>
+            <a href="{$rewrite['index.php/search/N/']}" class="singer_N">N</a>
+            <a href="{$rewrite['index.php/search/O/']}" class="singer_O">O</a>
+            <a href="{$rewrite['index.php/search/P/']}" class="singer_P">P</a>
+            <a href="{$rewrite['index.php/search/Q/']}" class="singer_Q">Q</a>
+            <a href="{$rewrite['index.php/search/R/']}" class="singer_R">R</a>
+            <a href="{$rewrite['index.php/search/S/']}" class="singer_S">S</a>
+            <a href="{$rewrite['index.php/search/T/']}" class="singer_T">T</a>
+            <a href="{$rewrite['index.php/search/U/']}" class="singer_U">U</a>
+            <a href="{$rewrite['index.php/search/V/']}" class="singer_V">V</a>
+            <a href="{$rewrite['index.php/search/W/']}" class="singer_W">W</a>
+            <a href="{$rewrite['index.php/search/X/']}" class="singer_X">X</a>
+            <a href="{$rewrite['index.php/search/Y/']}" class="singer_Y">Y</a>
+            <a href="{$rewrite['index.php/search/Z/']}" class="singer_Z">Z</a>
+        </dd>
+    </dl>
+</div>
+</div>
+<div class="box mb10 clearfix">
+ <div class="mdBox bgWrite">
+  <div class="mdBoxHd">
+   <h2 class="mdBoxHdTit">搜索“<font color="#FF6969">{$singer['search']}</font>”，找到相关结果共<font color="#FF6969">{$page['data']}</font>个。</h2>
+  </div>
+  <div class="singer_box">
+    <ol class="filter_list clearfix">
+<!--{loop singer page=35}--><li><a class="t-i" target="_blank" href="{$singer['link']}"><img title="{$singer['name']}" src="{$singer['cover']}"></a><a href="{$singer['link']}" class="t-t" target="_blank">{$singer['name']}</a></li><!--{/loop singer}-->
+    </ol>
+   <div class="loadMore clearfix"><a href="{$page['down']}" class="loadMoreBtn">---------加载更多歌手---------</a></div> 
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

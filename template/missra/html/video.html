@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$video['name']} - {$video['classname']} - {$_G['name']}</title>
+<meta name="Keywords" content="{$video['name']},{$video['classname']}" />
+<meta name="Description" content="{$video['name']},{$video['classname']},{$_G['name']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/mvnew.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+function get_play(play) {
+	var url = '{$_G['tempath']}widget/v.swf?php=video&lists={video}{$video['id']}&.swf';
+	if (play.match(/\.(swf)/g)) {
+		url = play;
+	}
+	return '<embed src="' + url + '" width="100%" height="600" allowfullscreen="true" allowscriptaccess="always" wmode="transparent" type="application/x-shockwave-flash"></embed>';
+}
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; {$video['classname']} &gt; {$video['name']}</h2>
+</div>
+<div class="playBg">
+<div class="box mvPlay mb10">
+<div class="playWrap">
+<div class="playBox">
+<script type="text/javascript">document.write(get_play('{$video['play']}'));</script>
+</div>
+</div>
+</div>
+</div>
+<div class="box mb10">
+<div class="mvShare">
+    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <span class="bds_more">更多</span>
+	<a class="shareCount"></a>
+    </div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=58999"></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+</div>
+</div>
+<div class="box mb10 clearfix">
+ <div class="mdBox bgWrite">
+  <div class="mdBoxHd">
+   <h2 class="mdBoxHdTit">猜你喜欢</h2>
+  </div>
+  <div class="mdBoxBd">
+   <div class="mvList">
+    <ul class="mvListUl clearfix">
+<!--{loop video count=7 sort=hits class=auto}-->
+     <li><a class="t-i" href="{$video['link']}"><img src="{$video['cover']}" title="{$video['name']}"></a><a class="t-t" href="{$video['link']}">{$video['name']}</a><div class="i-t"><p class="mvSinger"><a href="{$video['singerlink']}" target="_blank">{$video['singername']}</a></p><p><!--{if('{$video['singername']}'!=='未知歌手')}--><a class="videoMv"></a><!--{/if}-->播放：{$video['hits']}</p><p>更新：{$video['addtime style=Y-m-d']}</p></div></li>
+<!--{/loop video}-->
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

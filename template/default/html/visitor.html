@@ -1,0 +1,78 @@
+<!--{eval}-->
+$xml = simplexml_load_file(IN_ROOT.get_template(2).'setting.xml');
+$value = trim($xml->item[0]['value']);
+if($value){
+return '<div class="visitor_cp">
+	<a title="返回页面顶部" class="get_top" id="btntop"></a><a title="边听边说" class="get_feedback"></a><a title="返回页面底部" class="get_bottom" id="btnbottom"></a>
+</div>
+<link href="{$_G['path']}static/pack/asynctips/asyncbox.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<link href="{$_G['path']}static/pack/barrager/barrager.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['path']}static/pack/barrager/barrager.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/auth.js"></script>';
+}else{
+return '<div class="visitor_cp">
+	<a title="返回页面顶部" class="get_top" id="btntop"></a><a href="{$rewrite['user.php/feed/index/']}" target="_blank" title="说说" class="get_feedback"></a><a title="返回页面底部" class="get_bottom" id="btnbottom"></a>
+</div>';
+}
+<!--{/eval}-->
+<link href="{$_G['tempath']}css/player.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$_G['tempath']}js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/player.js"></script>
+<div class="m_player m_player_folded" id="divplayer" style="left:-540px">
+	<div class="m_player_dock">
+		<div class="music_info">
+			<a class="album_pic" id="album_pic"><img src="{$_G['tempath']}css/cover_mine_130.jpg"></a>
+			<div class="music_info_main">
+				<p class="music_name" id="music_name"><span>歌曲名称</span></p>
+				<p class="singer_name" id="singer_name">歌手名称</p>
+				<p class="play_date"><span id="playtime">0:00:00</span> / <span id="totaltime">0:00:00</span></p>
+			</div>
+		</div>
+		<div class="bar_op">
+			<strong onclick="player_prev();" title="上一首" class="prev_bt"><span>上一首</span></strong>
+			<strong title="播放" class="play_bt"><span>播放</span></strong>
+			<strong title="暂停" class="pause_bt" style="display:none"><span>暂停</span></strong>
+			<strong onclick="player_next();" title="下一首" class="next_bt"><span>下一首</span></strong>
+			<p class="volume" title="音量调节">
+				<span class="volume_mute" title="开启声音" style="display:none"></span>
+				<span class="volume_icon" title="关闭声音"></span>
+				<span class="volume_regulate">
+					<span class="volume_bar" style="width:0%"></span>
+				</span>
+			</p>
+		</div>
+		<p class="player_bar">
+			<span class="download_bar" style="width:0%"></span>
+			<span class="play_current_bar" style="width:0%"></span>
+			<span class="progress_op" style="left:0%"></span>
+		</p>
+	</div>
+	<span class="active_tip" id="spanaddtips" style="top:0px;display:none"></span>
+	<span title="展开播放列表" class="open_list" id="spansongnum1"><span id="spansongnums">0</span></span>
+	<span title="显示歌词" class="btn_lyrics_disabled" id="btnlrc"></span>
+	<button type="button" class="folded_bt" style="cursor:pointer" title="点击展开" id="btnfold"></button>
+	<div class="play_list_frame" id="divplayframe" style="display:none;opacity:1">
+		<div class="play_list_title">
+			<ul style="width:270px"><li class="current"><a style="cursor:pointer">播放列表</a><i></i></li></ul>
+			<span class="clear_list">清空列表</span>
+			<strong title="收起播放列表" class="close_list" id="btnclose"></strong>
+		</div>
+		<div class="play_list">
+			<div class="play_list_point" id="divnulllist">
+				<div><h4>您当前还未添加任何歌曲</h4><br /></div>
+			</div>
+			<div class="play_list_main">
+				<div class="single_list">
+				    <ul id="jp-playlist-box"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="y_player_lyrics" id="player_lyrics_pannel" style="display:none">
+		<div class="lyrics_text" id="lyrics"></div>
+		<div class="lyrics_bg"></div>
+		<span class="close_lyrics" id="closelrcpannel"></span>
+	</div>
+</div>
+<div id="player"></div>

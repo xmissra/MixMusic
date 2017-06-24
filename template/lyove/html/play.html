@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}"/>
+<title>音乐盒 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}"/>
+<meta name="Description" content="{$_G['description']}"/>
+<link rel="stylesheet" href="{$_G['path']}static/pack/asynctips/asynctips.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/asyncbox.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/style.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/layout.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/hfsp.css" type="text/css"/>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/index.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var connect_url = '{$rewrite['user.php/people/connect/']}';
+var reg_open = <!--{eval}-->return IN_REGOPEN;<!--{/eval}-->;
+</script>
+</head>
+<body>
+<div id="wrapper" style="background:url({$_G['tempath']}css/playbg.jpg);">
+	<div id="header" class="css_sprites_x header_bg_ps">
+		<div class="container">
+			<div class="main_headlft">
+				<div id="logo" class="fl">
+					<a href="{$_G['path']}"><img src="{$_G['tempath']}css/logo.gif" width="134" height="75"></a>
+				</div>
+				<div id="h_search" style="position:relative; left:-46px;" class="fl h_search">
+					<div class="option_selected" id="search_option_selected">
+						<a href="javascript:void(0)" id="st" target="_self">音乐</a>
+					</div>
+					<div class="option_list" id="search_option_list">
+						<ul>
+							<li class="selected"><a href="javascript:void(0)" target="_self">音乐</a></li>
+							<li><a href="javascript:void(0)" target="_self">专辑</a></li>
+							<li><a href="javascript:void(0)" target="_self">歌手</a></li>
+							<li><a href="javascript:void(0)" target="_self">视频</a></li>
+						</ul>
+					</div>
+					<div class="search_box">
+						<input type="text" onfocus="this.value=''" id="sq" value="请输入查询关键字！">
+						<button type="submit" id="hsearch">搜索</button>
+					</div>
+				</div>
+				<div id="menu">
+					<ul id="nav">
+						<li class="mainlevel_nol"><a href="{$_G['path']}">首页</a></li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_1"><!--{loop singer_class count=1 order=asc}--><a href="{$singerclass['link']}">歌手库</a><!--{/loop singer_class}-->
+						<ul class="sub_nav_1">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop singer_class order=asc}-->
+							<li><a href="{$singerclass['link']}">{$singerclass['name']}</a></li>
+							<!--{/loop singer_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_2"><!--{loop class count=1 order=asc}--><a href="{$class['link']}">发现音乐</a><!--{/loop class}-->
+						<ul class="sub_nav_2">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop class order=asc}-->
+							<li><a href="{$class['link']}">{$class['name']}</a></li>
+							<!--{/loop class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_3"><!--{loop special_class count=1 order=asc}--><a href="{$specialclass['link']}">精选辑</a><!--{/loop special_class}-->
+						<ul class="sub_nav_3">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop special_class order=asc}-->
+							<li><a href="{$specialclass['link']}">{$specialclass['name']}</a></li>
+							<!--{/loop special_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel" id="mainlevel_4"><!--{loop video_class count=1 order=asc}--><a href="{$videoclass['link']}">视频</a><!--{/loop video_class}-->
+						<ul class="sub_nav_4">
+							<li class="ltradius css_sprites_subnav"></li>
+							<!--{loop video_class order=asc}-->
+							<li><a href="{$videoclass['link']}">{$videoclass['name']}</a></li>
+							<!--{/loop video_class}-->
+							<li class="rtradius css_sprites_subnav"></li>
+						</ul>
+						</li>
+						<li class="main_lidiv"></li>
+						<li class="mainlevel_nol"><a href="{$_G['path']}user.php">用户中心</a></li>
+					</ul>
+				</div>
+				<div class="nol_nav">
+					<div class="nolnav_title">
+					</div>
+					<ul>
+						<li><a href="{$rewrite['index.php/misc/rank/new/']}">最新排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/hot/']}">最热排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/good/']}">好评排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/bad/']}">差评排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/fav/']}">收藏排行</a></li>
+						<li><a href="{$rewrite['index.php/misc/rank/down/']}">下载排行</a></li>
+					</ul>
+					<div class="nolnav_over">
+					</div>
+				</div>
+			</div>
+			<div class="main_headrit">
+				<div id="site_quick" class="fr black_loginBfo">
+					<span id="getlogin">
+					<script type="text/javascript">get_login();</script>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<center>
+	<div id="_play" style="width:100%;height:600px;">
+		<script type="text/javascript">getplay();</script>
+	</div>
+	</center>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

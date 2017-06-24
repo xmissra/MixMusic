@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>音乐曲风 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/singer.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a class="active" href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+ <div class="box clearfix category bgWrite">
+<div class="category_list clearfix"><h2 class="cate_diyu">按地域</h2><ul><!--{loop tag type=0 order=asc}--><li><a href="{$tag['link']}" target="_blank">{$tag['title']}</a></li><!--{/loop tag}--></ul></div>
+<div class="category_list clearfix"><h2 class="cate_qufeng">按曲风</h2><ul><!--{loop tag type=1 order=asc}--><li><a href="{$tag['link']}" target="_blank">{$tag['title']}</a></li><!--{/loop tag}--></ul></div>
+<div class="category_list clearfix"><h2 class="cate_xinqing">按心情</h2><ul><!--{loop tag type=2 order=asc}--><li><a href="{$tag['link']}" target="_blank">{$tag['title']}</a></li><!--{/loop tag}--></ul></div>
+<div class="category_list clearfix"><h2 class="cate_yinyue">按歌手</h2><ul><!--{loop tag type=3 order=asc}--><li><a href="{$tag['link']}" target="_blank">{$tag['title']}</a></li><!--{/loop tag}--></ul></div>
+<div class="category_list clearfix" style="border-bottom:0 none;"><h2 class="cate_huati">按语言</h2><ul><!--{loop tag type=4 order=asc}--><li><a href="{$tag['link']}" target="_blank">{$tag['title']}</a></li><!--{/loop tag}--></ul></div>
+ </div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

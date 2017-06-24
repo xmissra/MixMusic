@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="{$_G['charset']}">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>导航 - {$_G['name']}</title>
+<link href="{$_G['tempath']}css/index.css" rel="stylesheet">
+<script src="{$_G['tempath']}js/lib.js" type="text/javascript"></script>
+<script type="text/javascript">
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+</script>
+</head>
+<body>
+<div class="wrap">
+	<header class="mod_header">
+	<i class="music_logo">{$_G['name']}</i>
+	<a href="{$rewrite['index.php/page/map/']}" class="btn_download">导航</a>
+	</header>
+	<nav class="mod_nav">
+	<a href="{$_G['path']}">音乐</a>
+	<a href="{$rewrite['index.php/page/album/']}">专辑</a>
+	<a href="{$rewrite['index.php/page/artist/']}">歌手</a>
+	<a href="{$rewrite['index.php/page/mtv/']}">视频</a>
+	<a href="{$rewrite['index.php/page/article/']}">视频</a>
+	</nav>
+	<div class="search_box">
+		<div class="mod_search_bar">
+			<div class="search_bar_cont">
+				<input class="search_input" type="text" onclick="this.value=''" id="keyword" value="搜索音乐">
+				<span class="icon icon_search">搜索</span>
+			</div>
+			<div class="search_bar_tip_text" style="display:block;cursor:pointer" onclick="lib.s_earch('music');return false;">
+				搜索
+			</div>
+		</div>
+		<div class="mod_search_result">
+			<h3 class="result_tit">音乐分类</h3>
+			<div class="result_tags">
+				<!--{loop class order=asc}-->
+				<a href="{$class['link']}" class="js_keyword tag_s">{$class['name']}</a>
+				<!--{/loop class}-->
+			</div>
+		</div>
+		<div class="mod_search_result">
+			<h3 class="result_tit">专辑分类</h3>
+			<div class="result_tags">
+				<!--{loop special_class order=asc}-->
+				<a href="{$specialclass['link']}" class="js_keyword tag_s">{$specialclass['name']}</a>
+				<!--{/loop special_class}-->
+			</div>
+		</div>
+		<div class="mod_search_result">
+			<h3 class="result_tit">歌手分类</h3>
+			<div class="result_tags">
+				<!--{loop singer_class order=asc}-->
+				<a href="{$singerclass['link']}" class="js_keyword tag_s">{$singerclass['name']}</a>
+				<!--{/loop singer_class}-->
+			</div>
+		</div>
+		<div class="mod_search_result">
+			<h3 class="result_tit">视频分类</h3>
+			<div class="result_tags">
+				<!--{loop video_class order=asc}-->
+				<a href="{$videoclass['link']}" class="js_keyword tag_s">{$videoclass['name']}</a>
+				<!--{/loop video_class}-->
+			</div>
+		</div>
+	</div>
+	<footer class="mod_footer">
+		<div class="version_tab"><!--{loop link order=asc}-->
+			<a href="{$link['url']}" target="_blank">{$link['name']}</a>
+		<!--{/loop link}--></div>
+		<p class="copyright">Copyright &copy; <script type="text/javascript">document.write(new Date().getFullYear());</script> {$_G['host']} .All Rights Reserved.</p>
+	</footer>
+</div>
+</body>
+</html>

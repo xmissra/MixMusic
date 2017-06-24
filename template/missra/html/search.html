@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$music['search']} - 搜索音乐 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/search.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}widget/box/css/box.css" rel="stylesheet" type="text/css"/>
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/v.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/box/js/box.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+var down_url = '{$rewrite['index.php/misc/mod/down/_mid/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+    <div class="box searchPage clearfix">
+        <div class="searchL">
+            <h1 class="soAllNum">搜索“<em class="soCi">{$music['search']}</em>”，找到相关歌曲共<em class="soCi">{$page['data']}</em>首。</h1>
+            <ul class="searchNav clearfix">
+                <li class="current"><a style="cursor:pointer;">搜索音乐</a></li>
+                <li><a style="cursor:pointer;" onclick="location.href=search_url.replace(/table\/target/g, 'special/{$music['search']}');">搜索专辑</a></li>
+            </ul>
+        <div class="soMusic">
+            <div id="searchInfo">
+            <div class="soMusic">
+            <div class="soBtnTp"><div class="setPlay"><a class="setPlayXuan" style="cursor:pointer;" onclick="lib.quanxuan('search_music');">全选/反选</a><a class="setPlayPlay" style="cursor:pointer;" onclick="lib.player('search_music', 'play');">播放</a><a class="setPlayAdd" style="cursor:pointer;" onclick="lib.player('search_music', 'box');">加入列表</a></div></div>
+            <div class="songList" id="search_music"><ul class="clearfix"><!--{loop music page=20}-->
+                <li><input class="check" type="checkbox" id="music_{$music['id']}" value="{$music['id']}"><span class="songNum">{$music['i']}.</span><a class="songName" target="_blank" href="{$music['link']}">{$music['name']}</a><a href="{$music['singerlink']}" class="singerName" target="_blank">{$music['singername']}</a><a href="{$music['speciallink']}" class="albumName" target="_blank">{$music['specialname']}</a><a class="down" onclick="window.open(down_url.replace(/_mid/g, {$music['id']}));">下载</a><a class="add" onclick="lib.add_play({$music['id']}, 'music');">加入列表</a><a class="play" onclick="window.open('{$music['link']}');">试听</a></li>
+            <!--{/loop music}--></ul></div>
+            <div class="soBtnFt clearfix"><div class="setPlay"><a class="setPlayXuan" style="cursor:pointer;" onclick="lib.quanxuan('search_music');">全选/反选</a><a class="setPlayPlay" style="cursor:pointer;" onclick="lib.player('search_music', 'play');">播放</a><a class="setPlayAdd" style="cursor:pointer;" onclick="lib.player('search_music', 'box');">加入列表</a></div></div>
+            </div>
+            <div class="pagesNew"><div id="pager" class="pg"><ul class="pages"><li class="pgNext" style="cursor:pointer;" onclick="location.href='{$page['first']}';">首页</li><li class="pgNext" style="cursor:pointer;" onclick="location.href='{$page['up']}';">前一页</li>{$page['number 10']}<li class="pgNext" style="cursor:pointer;" onclick="location.href='{$page['down']}';">下一页</li><li class="pgNext" style="cursor:pointer;" onclick="location.href='{$page['last']}';">末页</li></ul></div></div>
+            <!--{pagestyle <li class="page-number" style="cursor:pointer;" onclick="location.href='[link]';">|<li class="page-number pgCurrent" style="cursor:pointer;">|</li>}-->
+            </div>
+        </div>
+        </div>
+    <div class="searchR">
+            <div class="searchRbang mb10">
+                <div class="areaTit"><h2>最热歌曲榜</h2></div>
+                <div class="areaBox">
+                    <ul class="mmList"><!--{loop music count=10 sort=hits}-->
+                        <!--{if({$music['i']}==1 || {$music['i']}==3 || {$music['i']}==5 || {$music['i']}==7 || {$music['i']}==9)}--><li class="clearfix" style="background:none repeat scroll 0% 0% rgb(255, 255, 255);"><!--{else}--><li class="clearfix" style="background:none repeat scroll 0% 0% rgb(247, 247, 247);"><!--{/if}-->
+                        <!--{if({$music['i']}<4)}--><span class="num numHot"><!--{else}--><span class="num"><!--{/if}-->
+                        {$music['i']}</span><span class="rankIco">
+                        <!--{if({$music['hits']}>0)}--><i class="rankUp"><!--{else}--><i class="rankLine"><!--{/if}-->
+                        </i></span><a target="_blank" href="{$music['link']}" class="songName">{$music['name']}</a><a target="_blank" href="{$music['singerlink']}" class="singerName">{$music['singername']}</a></li>
+                    <!--{/loop music}--></ul>
+                </div>
+            </div>
+            <div class="searchRsinger">
+                <div class="areaTit"><h2>最热专辑榜</h2></div>
+                <div class="areaBox">
+                    <ul class="clearfix"><!--{loop special count=12 sort=hits}-->
+                        <li><a href="{$special['link']}" title="{$special['name']}" target="_blank"><img src="{$special['cover']}"><span>{$special['name']}</span></a></li>
+                    <!--{/loop special}--></ul>
+                </div>
+            </div>
+    </div>
+    </div>
+<!--{require 'box.html'}-->
+<!--{require 'bottom.html'}-->
+</body>
+</html>

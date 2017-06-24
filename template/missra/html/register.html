@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>快速注册 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/user.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+function QQLogin() {
+	asyncbox.open({
+		id: "popQQLogin",
+		title: "QQ登录",
+		url: in_path + "source/pack/connect/login.php",
+		width: 726,
+		height: 450,
+		modal: true,
+		btnsbar: $.btn.close
+	})
+}
+function qzone_return(type){
+        $.close('popQQLogin');
+        if(type==1){
+            uc_syn('login');
+            location.href = in_path;
+        }else{
+            location.href = '{$rewrite['user.php/people/connect/']}';
+        }
+}
+function update_seccode(){
+	document.getElementById('img_seccode').src = '{$rewrite['user.php/people/seccode/' + Math.random() + '/']}';
+}
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box register register-step01">
+ <div class="mdBox bgWrite">
+  <div class="mdBoxHd mdBangHd">
+   <h2 class="mdBoxHdTit">快速注册</h2>
+  </div>
+  <div class="mdBoxBd clearfix">
+   <div class="form-box register-form">
+<!--{if(IN_REGOPEN==1)}-->
+<form method="get" onsubmit="register();return false;">
+<ul>
+<li class="form-item clearfix"><label class="label">创建帐号：</label><input type="text" id="username" class="input" /><span id="username_tips" class="tips">由 3 到 15 个字符组成，不能有空格或 < > \' " / \ 等字符。</span></li>
+<li class="form-item clearfix"><label class="label">设置密码：</label><input type="password" id="password" class="input" /><span id="password_tips" class="tips">最小长度为 6 个字符。</span></li>
+<li class="form-item clearfix"><label class="label">确认密码：</label><input type="password" id="password1" class="input" /><span id="password1_tips" class="tips"></span></li>
+<li class="form-item clearfix"><label class="label">邮箱：</label><input type="text" id="mail" class="input" /><span id="mail_tips" class="tips">请准确填入您的邮箱，在忘记密码时，邮件将发送到该邮箱。</span></li>
+<li class="form-item clearfix"><label class="label">验证码：</label><input type="text" id="seccode" style="width:45px;" maxlength="4" class="input" />&nbsp;&nbsp;<img id="img_seccode" src="{$rewrite['user.php/people/seccode/']}" align="absmiddle" />&nbsp;&nbsp;<a href="javascript:update_seccode()">更换</a><span id="seccode_tips" class="tips"></span></li>
+</ul>
+<div class="btn-group clearfix" style="padding:10px 0 0 120px;"><input type="submit" class="btnZhuce" value="立即注册" /></div>
+</form>
+<!--{else}-->
+<div class="notice"><div class="error">本站暂未开放注册，请稍后再试！</div></div>
+<!--{/if}-->
+</div>
+<div class="guess">
+<h3>或者您想：</h3>
+<p><a href="{$rewrite['index.php/page/login/']}" style="color:#090;">直接登录&gt;&gt;</a></p>
+<p><a href="{$rewrite['index.php/page/lostpasswd/']}">找回密码</a></p>
+<h4><strong>通过合作网站登录</strong>：</h4>
+<ul class="logoIcon clearfix">
+<li><a class="qqlogin" href="javascript:void(0)" onclick="QQLogin();"><span class="icon-logo icon-qq"></span><span class="icon-text">QQ帐号</span></a></li>
+</ul>
+</div>
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

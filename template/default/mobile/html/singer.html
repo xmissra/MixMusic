@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="{$_G['charset']}">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>{$singer['name']} - {$singer['classname']} - {$_G['name']}</title>
+<link href="{$_G['tempath']}css/index.css" rel="stylesheet">
+<link href="{$_G['tempath']}css/rank.css" rel="stylesheet">
+<link href="{$_G['tempath']}css/bootstrap.min.css" rel="stylesheet">
+<link href="{$_G['tempath']}css/music.css" rel="stylesheet">
+<script src="{$_G['tempath']}js/jquery.min.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}js/jquery.jplayer.min.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}js/jplayer.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}js/lib.js" type="text/javascript"></script>
+<script type="text/javascript">
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var temp_url = '{$_G['tempath']}';
+</script>
+</head>
+<body>
+<div class="wrap">
+	<header class="mod_header">
+	<i class="music_logo">{$_G['name']}</i>
+	<a href="{$rewrite['index.php/page/map/']}" class="btn_download">导航</a>
+	</header>
+	<nav class="mod_nav">
+	<a href="{$_G['path']}">音乐</a>
+	<a href="{$rewrite['index.php/page/album/']}">专辑</a>
+	<a href="{$rewrite['index.php/page/artist/']}" class="current">歌手</a>
+	<a href="{$rewrite['index.php/page/mtv/']}">视频</a>
+	</nav>
+	<div class="search_box">
+		<div class="mod_search_bar">
+			<div class="search_bar_cont">
+				<input class="search_input" type="text" onclick="this.value=''" id="keyword" value="搜索歌手">
+				<span class="icon icon_search">搜索</span>
+			</div>
+			<div class="search_bar_tip_text" style="display:block;cursor:pointer" onclick="lib.s_earch('singer');return false;">
+				搜索
+			</div>
+		</div>
+	</div>
+	<ul class="mod_song_list">
+		<li class="list_content">
+			<span class="media avatar"><img src="{$singer['cover']}"></span>
+			<h6 class="main_tit">{$singer['name']}</h6>
+			<p class="sub_tit"><span>{$singer['nick']}</span></p>
+		</li>
+		<!--{loop music singer=this}-->
+		<li class="song_list__item js-song">
+		<div class="song_list__no">
+			<img src="{$_G['tempath']}css/playing.gif" style="display:none">
+			<span class="song_list__no_number">{$music['i']}</span>
+			<big class="xy" style="display:none">{$music['id']}</big>
+		</div>
+		<div class="song_list__body">
+			<a class="song_list__link" style="cursor:pointer" data-key="{$music['i']}">
+			<h3 class="song_list__tit">{$music['name']}</h3>
+			<p class="song_list__desc">
+				{$music['singername']}
+			</p>
+			</a>
+		</div>
+		<div class="song_list__btn">
+			<i class="song_list__play" style="cursor:pointer" onclick="location.href='{$music['link']}'"></i>
+		</div>
+		</li>
+		<!--{/loop music}-->
+	</ul>
+</div>
+<!--{require 'player.html'}-->
+</body>
+</html>

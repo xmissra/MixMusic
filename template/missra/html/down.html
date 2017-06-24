@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$music['name']} - 下载音乐 - {$_G['name']}</title>
+<meta name="Keywords" content="下载_{$music['name']},{$music['classname']}" />
+<meta name="Description" content="下载_{$music['name']},{$music['classname']},{$_G['name']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.crumb{font-size:12px;font-weight:normal;line-height:36px;height:36px;color:#000}
+.geciBox{border:1px solid #e5e5e5;width:960px;margin:0 auto}
+.mb10{margin-bottom:10px}
+.geci{padding:20px 50px 30px}
+.geci .fl{float:left;width:370px}
+.geci .fr{float:right;width:450px}
+.geci h1{font:800 28px/36px Microsoft YaHei;color:#333}
+.geci h2{font:800 16px/26px Microsoft YaHei;color:#333;margin:8px 0 0;height:40px}
+.geci h1 a{font:800 16px/26px Microsoft YaHei;color:#333;margin:0 0 0 10px;color:#090;text-decoration:underline}
+.geci h2 a{color:#090;text-decoration:underline}
+.sDian1,.sDian2{float:none;margin:10px 0;display:inline;font-size:14px;height:31px;line-height:31px;text-align:center;background:#999;color:#fff}
+.sDian1{background:url({$_G['tempath']}css/dianz.png) 0 0 no-repeat;width:108px}
+.sDian2{background:url({$_G['tempath']}css/dianz.png) 0 -31px no-repeat;width:80px}
+.sDian1:hover,.sDian2:hover{color:#fff}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+function get_grade(level){
+	var grade = '游客下载';
+	if (level == 1) {
+		grade = '绿钻会员';
+	} else if (level == 2) {
+		grade = '普通用户';
+	}
+	return grade;
+}
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 下载音乐：<font color="#FF6969">{$music['name']}</font></h2>
+</div>
+<div class="geciBox bgWrite mb10">
+<div class="geci clearfix">
+<div class="fl">
+<h1>下载歌词</h1>
+<div class="clearfix" style="text-align:center; margin:10px 0;line-height:160%;font-size:14px; border:1px dashed #ccc; padding:10px 15px; background:#f8f8f8;">
+<button type="button" onclick="location.href=temp_url+'source/lyric.php?id={$music['id']}';" class="sDian2" style="cursor:pointer;">点击下载</button>
+</div>
+<div style="margin:10px 0;line-height:160%;font-size:14px; border:1px dashed #999; padding:10px 15px; background:#fff;">
+{$music['texts']}
+ </div>
+</div>
+<div class="fr">
+<h1>下载音频</h1>
+<div style="text-align:center; margin:10px 0;line-height:160%;font-size:14px; border:1px dashed #ccc; padding:10px 15px; background:#f8f8f8;">
+<h2>歌曲名称：<a href="{$music['link']}" target="_blank"><small><font color="#0C87CD">{$music['name']}</font></small></a></h2>
+<h2>上传会员：<a href="{$music['ulink']}" target="_blank"><small><font color="#0C87CD">{$music['uname']}</font></small></a></h2>
+<h2>MP3音质：<strong style="color:#FF6969" id="kbps"><script type="text/javascript">getbitrate({$music['id']});</script></strong></h2>
+<h2>下载权限：<small><font color="#93C366"><script type="text/javascript">document.write(get_grade({$music['grade']}));</script></font></small></h2>
+<h2>下载扣点：<small><font color="#93C366">{$music['points']}</font> 金币</small></h2>
+<h2>下载次数：<small><font color="#93C366">{$music['downhits']}</font> 次</small></h2>
+<p><button type="button" onclick="location.href=temp_url+'source/audio.php?id={$music['id']}';" class="sDian1" style="cursor:pointer;">点击下载</button></p>
+ </div>
+</div>
+</div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

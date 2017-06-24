@@ -1,0 +1,13 @@
+#
+# robots.txt for MixMusic
+#
+
+User-agent: *
+Disallow: /api/
+Disallow: /client/
+Disallow: /data/
+Disallow: /source/
+Disallow: /static/
+Disallow: /template/
+Disallow: /admin.php
+Disallow: /install.php

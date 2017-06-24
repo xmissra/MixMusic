@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$video['search']} - 搜索视频 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/mvnew.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.step01 .search-box{padding:30px 12px 0 170px}
+.step01 .search-box strong{float:left;width:80px;text-align:right;height:32px;line-height:32px;color:#999;font-size:14px}
+.step01 .search-box .search-input{width:350px;float:left;background:url({$_G['tempath']}css/form-line.png) 0 0 repeat-x;line-height:20px;height:20px;border:1px solid #d2d2d2;padding:5px;width:300px;font-size:12px;word-break:break-all;word-wrap:break-word;color:#666}
+.step01 .search-box .search-btn{width:116px;height:32px;float:left;overflow:hidden;background:url({$_G['tempath']}css/search-btn.png) 0 0 no-repeat;border:0 none;cursor:pointer;text-indent:-9999px}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 搜索视频：<font color="#FF6969">{$video['search']}</font></h2>
+</div>
+<div style="border-top:2px solid #7DC03A;" class="box mb10 filter bgWrite">
+<div class="filterBox">
+  <div class="step01 clearfix">
+   <div class="search-box clearfix">
+    <form method="get" onsubmit="lib.s_earch('video', 'video_keyword');return false;">
+    <div class="clearfix"> <strong>视频名称：</strong>
+     <input type="text" id="video_keyword" class="input-value input search-input">
+     <input type="submit" class="search-btn" value="搜索">
+    </div>
+    </form>
+   </div>
+  </div>
+    <dl class="clearfix">
+      <dt>视频分类</dt>
+      <dd>
+          <!--{loop video_class order=asc}--><a href="{$videoclass['link']}">{$videoclass['name']}</a><!--{/loop video_class}-->
+      </dd>
+    </dl>
+</div>
+</div>
+<div class="box mb10 clearfix">
+ <div class="mdBox bgWrite">
+  <div class="mdBoxHd">
+   <h2 class="mdBoxHdTit">搜索“<font color="#FF6969">{$video['search']}</font>”，找到相关结果共<font color="#FF6969">{$page['data']}</font>个。</h2>
+  </div>
+  <div class="mdBoxBd">
+   <div class="mvList">
+    <ul class="mvListUl clearfix">
+<!--{loop video page=35}-->
+<li><a href="{$video['link']}" class="t-i" target="_blank"><img src="{$video['cover']}" title="{$video['name']}"></a><a href="{$video['link']}" class="t-t" target="_blank">{$video['name']}</a><div class="i-t"><p class="mvSinger"><a href="{$video['singerlink']}" target="_blank">{$video['singername']}</a></p><p><!--{if('{$video['singername']}'!=='未知歌手')}--><a class="videoMv"></a><!--{/if}-->播放：{$video['hits']}</p><p>更新：{$video['addtime style=Y-m-d']}</p></div></li>
+<!--{/loop video}-->
+    </ul>
+   </div>
+   <div class="loadMore clearfix"><a href="{$page['down']}" class="loadMoreBtn">---------加载更多高清MV---------</a></div> 
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

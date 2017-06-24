@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}"/>
+<title>{$singer['name']} - {$singer['classname']} - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}"/>
+<meta name="Description" content="{$_G['description']}"/>
+<link rel="stylesheet" href="{$_G['path']}static/pack/asynctips/asynctips.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/asyncbox.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/common.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/layout.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/hfsp.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/video.css" type="text/css"/>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var connect_url = '{$rewrite['user.php/people/connect/']}';
+var reg_open = <!--{eval}-->return IN_REGOPEN;<!--{/eval}-->;
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+<script type="text/javascript" src="{$_G['tempath']}js/scrolltop.js"></script>
+</head>
+<body>
+<div id="wrapper">
+	<!--{require 'top.html'}-->
+	<div class="container">
+		<div class="hr_10">
+		</div>
+		<div id="breadcrumb_nav">
+			<div class="sitepoint">
+				<a href="{$_G['path']}">首页</a>&raquo;<a href="{$singer['classlink']}">{$singer['classname']}</a>&raquo;<a href="{$singer['link']}">{$singer['name']}</a>
+			</div>
+			<div class="fl h_search" style="position:relative; left:10px;">
+				<div class="option_selected" id="search_option_selected">
+					<a href="javascript:void(0)" id="st" target="_self">音乐</a>
+				</div>
+				<div class="option_list" id="search_option_list">
+					<ul>
+						<li class="selected"><a href="javascript:void(0)" target="_self">音乐</a></li>
+						<li><a href="javascript:void(0)" target="_self">专辑</a></li>
+						<li><a href="javascript:void(0)" target="_self">歌手</a></li>
+						<li><a href="javascript:void(0)" target="_self">视频</a></li>
+					</ul>
+				</div>
+				<div class="search_box">
+					<input type="text" onfocus="this.value=''" id="sq" value="请输入查询关键字！">
+					<button type="submit" id="hsearch">搜索</button>
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="container">
+			<div class="picturePage">
+				<div class="com_title fc_4d9900">
+					<div class="comttl_txt1">
+						{$singer['name']}
+					</div>
+				</div>
+				<div class="album_List">
+					<dl class="im_album">
+						<dt><img src="{$singer['cover']}" border="0" width="174" height="174"></dt>
+						<dd class="title">{$singer['name']}</dd>
+						<dd class="futtl">{$singer['nick']}</dd>
+					</dl>
+					<div class="zjjs">
+						<div class="zjjsbt">
+							歌手简介
+						</div>
+						<div class="zjnr">
+							{$singer['intro len=200']}
+						</div>
+					</div>
+					<div class="hr_10">
+					</div>
+					<div class="single_MlistCon">
+						<ul class="single_Mlist" id="player_singer">
+							<li class="th ffhei"><span class="check"></span><span class="single_name">歌曲/演唱者</span><span class="listenNum">试听人气</span><span class="updatetime">上传日期</span><span class="single_opertxt">试听</span><span class="single_opertxt">收藏</span><span class="single_opertxt">下载</span></li>
+							<!--{loop music singer=this}-->
+							<li>
+							<span class="check"><input style="display:none" type="checkbox" value="{$music['id']}" checked></span>
+							<span class="single_name"><a href="{$music['link']}" target="_blank"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a> － <a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a></span>
+							<span class="listenNum"><span class="numtxt">{$music['hits']}</span><span class="per_single">
+							<script type="text/javascript">var _w={$music['hits']};if({$music['hits']} > 99){_w=100;}document.write("<img src='{$_G['tempath']}css/per_bar_nol.gif' width='"+_w+"%' height='11' />");</script>
+							</span></span>
+							<span class="updatetime">{$music['addtime style=Y-m-d']}</span>
+							<span class="single_oper a_oper"><a class="ting" href="{$music['link']}" target="_blank" title="试听"></a></span>
+							<span class="single_oper a_oper"><a class="xin" onclick="create_fav({$music['id']});" style="cursor:pointer;" title="收藏"></a></span>
+							<span class="single_oper a_oper"><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a></span>
+							</li>
+							<!--{/loop music}-->
+							<li class="single_btnli bnb">
+							<span class="single_link"><a href="javascript:lib.playerObj('player_singer');">&gt;&gt;播放TA的歌曲</a></span>
+							</li>
+						</ul>
+					</div>
+					<div class="single_MlistCon">
+						<ul class="single_Mlist">
+							<li class="th ffhei" style="text-align:center"><span class="single_name" style="width:100%">TA的专辑</span></li>
+						</ul>
+					</div>
+					<!--{loop special singer=this}-->
+					<dl class="im_album">
+						<dt><a href="{$special['link']}" target="_blank"><img src="{$special['cover']}" title="{$special['name']}" width="174" height="174"></a></dt>
+						<dd class="title"><a href="{$special['link']}" target="_blank">{$special['name']}</a></dd>
+						<dd class="futtl"><a href="{$special['singerlink']}" target="_blank">{$special['singername']}</a></dd>
+					</dl>
+					<!--{/loop special}-->
+					<div class="single_MlistCon">
+						<ul class="single_Mlist">
+							<li class="th ffhei" style="text-align:center"><span class="single_name" style="width:100%">TA的视频</span></li>
+						</ul>
+					</div>
+					<!--{loop video singer=this}-->
+					<dl class="im_album">
+						<dt><a href="{$video['link']}" target="_blank"><img src="{$video['cover']}" title="{$video['name']}" width="174" height="174"></a></dt>
+						<dd class="title"><a href="{$video['link']}" target="_blank">{$video['name']}</a></dd>
+						<dd class="futtl"><a href="{$video['singerlink']}" target="_blank">{$video['singername']}</a></dd>
+					</dl>
+					<!--{/loop video}-->
+					<div class="hr_10">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hr_10">
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

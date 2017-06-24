@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}"/>
+<title>{$music['name']} - {$music['classname']} - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}"/>
+<meta name="Description" content="{$_G['description']}"/>
+<link rel="stylesheet" href="{$_G['path']}static/pack/asynctips/asynctips.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/asyncbox.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/common.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/play.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/layout.min.css" type="text/css"/>
+<link rel="stylesheet" href="{$_G['tempath']}css/hfsp.min.css" type="text/css"/>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/music.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var connect_url = '{$rewrite['user.php/people/connect/']}';
+var reg_open = <!--{eval}-->return IN_REGOPEN;<!--{/eval}-->;
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+<script type="text/javascript" src="{$_G['tempath']}js/scrolltop.js"></script>
+<script type="text/javascript">
+function setcopy(text, alertmsg){
+	var browserName = navigator.appName;
+	if(browserName=="Netscape"){
+		asyncbox.tips("您的浏览器不支持自动复制，请手工复制！", "error", 3000);
+	}else if(browserName=="Microsoft Internet Explorer"){
+		clipboardData.setData('Text', text);
+		asyncbox.tips(alertmsg, "success", 1000);
+	}
+}
+function copyflash(){
+	setcopy('http://{$_G['host']}{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf', 'FlaSH代码复制成功！');
+}
+function copyhtml(){
+	setcopy('<embed src=\"http://{$_G['host']}{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf\" width=\"309\" height=\"79\" wmode=\"transparent\" type=\"application/x-shockwave-flash\"></embed>', 'HTML代码复制成功！');
+}
+function shareText() {
+	asyncbox.open({
+		id: "popShareText",
+		modal: true,
+		drag: true,
+		width: 426,
+		height: 274,
+		title: "播放器代码",
+		html: "<div style='padding:20px 0 20px 0; text-align:center;'><embed src='{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf' width='309' height='79' wmode='transparent' type='application/x-shockwave-flash'></embed><br /><br /><p><strong>FlaSH代码：</strong><input type='text' value='http://{$_G['host']}{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf' onclick='copyflash();' style='width:300px'></p><br /><br /><p><strong>HTML代码：</strong><input type='text' value='<embed src=\"http://{$_G['host']}{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf\" width=\"309\" height=\"79\" wmode=\"transparent\" type=\"application/x-shockwave-flash\"></embed>' onclick='copyhtml();' style='width:300px'></p></div>"
+	})
+}
+function scroll_comment(){
+	var scroll_offset = $("#comment").offset();
+	$("body,html").animate({
+		scrollTop:scroll_offset.top
+	},500);
+}
+</script>
+</head>
+<body>
+<div id="wrapper">
+	<!--{require 'top.html'}-->
+	<div class="container">
+		<div class="hr_10">
+		</div>
+		<div id="breadcrumb_nav">
+			<div class="sitepoint">
+				<a href="{$_G['path']}">首页</a>&raquo;<a href="{$music['classlink']}">{$music['classname']}</a>&raquo;<a href="{$music['link']}">{$music['name']}</a>
+			</div>
+			<div class="fl h_search" style="position:relative; left:10px;">
+				<div class="option_selected" id="search_option_selected">
+					<a href="javascript:void(0)" id="st" target="_self">音乐</a>
+				</div>
+				<div class="option_list" id="search_option_list">
+					<ul>
+						<li class="selected"><a href="javascript:void(0)" target="_self">音乐</a></li>
+						<li><a href="javascript:void(0)" target="_self">专辑</a></li>
+						<li><a href="javascript:void(0)" target="_self">歌手</a></li>
+						<li><a href="javascript:void(0)" target="_self">视频</a></li>
+					</ul>
+				</div>
+				<div class="search_box">
+					<input type="text" onfocus="this.value=''" id="sq" value="请输入查询关键字！">
+					<button type="submit" id="hsearch">搜索</button>
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="player_block">
+			<div class="pybk_left">
+				<div class="play_state_icon">
+				</div>
+				<div class="play_title">
+					<span class="big_txt ffhei fb">{$music['name']}</span><span class="small_txt">{$music['singername']}</span>
+				</div>
+				<div class="hr_10">
+				</div>
+				<div class="play_player">
+					<div class="play_flash" style="z-index:-1">
+						<embed src="{$_G['tempath']}widget/v.swf?php=share&lists={share}{$music['id']}&.swf" width="309" height="79" wmode="transparent" type="application/x-shockwave-flash"></embed>
+					</div>
+					<div class="play_xihuan" id="_good">
+						<script type="text/javascript">getlove({$music['id']}, 'good');</script>
+					</div>
+				</div>
+				<div class="hr_20">
+				</div>
+				<div class="play_a_bar">
+					<a onclick="create_fav({$music['id']});" style="cursor:pointer;" class="a_play_sc">收藏音乐({$music['favhits']})</a>
+					<a onclick="create_down({$music['id']});" style="cursor:pointer;" class="a_play_xz">下载音乐({$music['downhits']})</a>
+					<a onclick="location.href=temp_url+'source/lyric.php?id={$music['id']}';" style="cursor:pointer;" class="a_play_push">下载歌词</a>
+					<a onclick="create_error({$music['id']});" style="cursor:pointer;" class="a_play_ss">举报音乐</a>
+				</div>
+				<div class="hr_5">
+				</div>
+				<div class="hr_10">
+				</div>
+				<div class="hr_20">
+				</div>
+				<div class="play_share">
+					<div class="fl">
+						外站推广
+					</div>
+					<div class="fl mlTens">
+						<a href="javascript:void(0)" onclick="shareText();"><img src="{$_G['tempath']}css/player.jpg" width="79" height="25"></a>
+					</div>
+					<div class="fl mlTens">
+						<a href="javascript:void(0)" onclick="scroll_comment();"><img src="{$_G['tempath']}css/comment.jpg" width="69" height="25"></a>
+					</div>
+					<div class="play_zhuan" id="_bad">
+						<script type="text/javascript">getlove({$music['id']}, 'bad');</script>
+					</div>
+				</div>
+			</div>
+			<div class="pybk_right">
+				<dl class="play_rit">
+					<dt><a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=middle']}" title="{$music['uname']}" width="154" height="154"></a></dt>
+					<dd>
+					<div class="rowsline fb fs_14">
+						<a href="{$music['ulink']}" target="_blank">{$music['uname']}</a>
+					</div>
+					<div class="rowsline">
+						<!--{eval}-->$uid = getfield('music', 'in_uid', 'in_id', {$music['id']});$sex = getfield('user', 'in_sex', 'in_userid', $uid);return getsex($sex);<!--{/eval}-->
+					</div>
+					<div class="hr_5">
+					</div>
+					<div class="rowsline">
+						<div class="fl com_button">
+							<a href="{$music['ulink']}" target="_blank">
+							<div class="a_btnlt">
+							</div>
+							<div class="a_btnmid">
+								访问空间
+							</div>
+							<div class="a_btnrt">
+							</div>
+							</a>
+						</div>
+					</div>
+					</dd>
+				</dl>
+				<div class="hr_10">
+				</div>
+				<div class="play_gz">
+					<ul>
+						<li id="_musicnum">
+						<script type="text/javascript">getmusician({$music['id']}, 'musicnum');</script>
+						</li>
+						<li id="_specialnum">
+						<script type="text/javascript">getmusician({$music['id']}, 'specialnum');</script>
+						</li>
+						<li id="_singernum">
+						<script type="text/javascript">getmusician({$music['id']}, 'singernum');</script>
+						</li>
+						<li id="_videonum">
+						<script type="text/javascript">getmusician({$music['id']}, 'videonum');</script>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="hr_10">
+		</div>
+		<div class="com_wrap">
+			<div class="textpage_left b_notop">
+				<div class="com_title fc_4d9900">
+					<div class="comttl_txt1">
+						音乐档案
+					</div>
+				</div>
+				<div class="hr_5">
+				</div>
+				<div class="song_infoBox">
+					<ul class="textul_list ffhei">
+						<li><span class="ttltype">所属分类：</span><span class="ttlinfo"><a href="{$music['classlink']}" target="_blank">{$music['classname']}</a></span></li>
+						<li><span class="ttltype">所属歌手：</span><span class="ttlinfo"><a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a></span></li>
+						<li><span class="ttltype">所属专辑：</span><span class="ttlinfo"><a href="{$music['speciallink']}" target="_blank">{$music['specialname']}</a></span></li>
+						<li><span class="ttltype">推荐指数：</span><span class="ttlinfo">{$music['best']}</span></li>
+						<li><span class="ttltype">下载权限：</span><span class="ttlinfo"><!--{if({$music['grade']} < 3)}-->'.({$music['grade']} == 1 ? '绿钻会员' : '普通用户').'<!--{else}-->游客下载<!--{/if}--></span></li>
+						<li><span class="ttltype">下载扣点：</span><span class="ttlinfo">{$music['points']}</span></li>
+						<li><span class="ttltype">试听人气：</span><span class="ttlinfo">{$music['hits']}</span></li>
+						<li><span class="ttltype">更新时间：</span><span class="ttlinfo">{$music['addtime style=Y-m-d H:i:s']}</span></li>
+					</ul>
+					<div class="song_infoPicBox">
+						<img src="{$music['cover']}" width="146" height="146">
+					</div>
+				</div>
+				<div class="hr_5">
+				</div>
+				<div class="cgcom_title fc_333">
+					<div class="cg_ttlleft">
+						<div class="comttl_txt1 fl">
+							发现音乐
+						</div>
+					</div>
+					<div class="cg_title_Bar" id="tabMenu">
+						<div class="tab_act">
+							随机推荐
+						</div>
+						<div class="tab_nol">
+							音乐抢鲜听
+						</div>
+					</div>
+				</div>
+				<div class="song_listBox" id="tabMenu_Content0">
+					<ul class="lt_music_list">
+						<!--{loop music count=10 sort=rand}-->
+						<li>
+						<div class="check">
+							<input name="m_ta" type="checkbox" value="{$music['id']}">
+						</div>
+						<div class="song">
+							<a href="{$music['link']}"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+						</div>
+						<div class="tongji">
+							<span class="tjnum">{$music['hits']}</span>
+							<span class="per_bar">
+							<script type="text/javascript">var _w={$music['hits']};if({$music['hits']} > 99){_w=100;}document.write("<img src='{$_G['tempath']}css/per_bar_nol.gif' width='"+_w+"%' height='11' />");</script>
+							</span>
+						</div>
+						<div class="a_oper">
+							<a class="ting" href="{$music['link']}" title="试听"></a><a class="xin" onclick="create_fav({$music['id']});" style="cursor:pointer;" title="收藏"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<li class="bnb">
+						<span class="check"><input id="selectall" type="checkbox"></span>
+						<input name="id" id="taid" type="hidden">
+						<span class="quan"><label for="selectall">全选</label></span>
+						<span class="link"><a href="javascript:void(0)" id="btnta">&gt;&gt;播放选中歌曲</a></span>
+						</li>
+						<script type="text/javascript">$(function(){$("#btnta").click(function(){if($("#taid").val() == ""){asyncbox.tips("请选择要播放的歌曲！", "wait", 1000);}else{lib.musicPlayer($("#taid").val());}});lib.select({id:"#selectall",name:"m_ta",value_id:"#taid"});})</script>
+					</ul>
+				</div>
+				<div class="song_listBox" id="tabMenu_Content1" style="display:none">
+					<ul class="lt_music_list">
+						<!--{loop music count=10}-->
+						<li>
+						<div class="check">
+							<input name="m_na" type="checkbox" value="{$music['id']}">
+						</div>
+						<div class="song">
+							<a href="{$music['link']}"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+						</div>
+						<div class="tongji">
+							<span class="tjnum">{$music['hits']}</span>
+							<span class="per_bar">
+							<script type="text/javascript">var _w={$music['hits']};if({$music['hits']} > 99){_w=100;}document.write("<img src='{$_G['tempath']}css/per_bar_nol.gif' width='"+_w+"%' height='11' />");</script>
+							</span>
+						</div>
+						<div class="a_oper">
+							<a class="ting" href="{$music['link']}" title="试听"></a><a class="xin" onclick="create_fav({$music['id']});" style="cursor:pointer;" title="收藏"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+						</div>
+						</li>
+						<!--{/loop music}-->
+						<li class="bnb">
+						<span class="check"><input id="selectall1" type="checkbox"></span>
+						<input name="id" id="naid" type="hidden">
+						<span class="quan"><label for="selectall1">全选</label></span>
+						<span class="link"><a href="javascript:void(0)" id="btnna">&gt;&gt;播放选中歌曲</a></span>
+						</li>
+						<script type="text/javascript">$(function(){$("#btnna").click(function(){if($("#naid").val() == ""){asyncbox.tips("请选择要播放的歌曲！", "wait", 1000);}else{lib.musicPlayer($("#naid").val());}});lib.select({id:"#selectall1",name:"m_na",value_id:"#naid"});})</script>
+					</ul>
+				</div>
+				<div class="com_title fc_333" id="comment">
+					<div class="comttl_txt1 fl">
+						音乐评论
+					</div>
+				</div>
+				<div class="song_infoBox11">
+					<iframe border="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" width="100%" height="388" src="{$_G['tempath']}source/comment.php?id={$music['id']}">
+					</iframe>
+				</div>
+				<div class="hr_5">
+				</div>
+			</div>
+			<div class="textpage_right">
+				<div class="com_title fc_333 b_ritsd">
+					<div class="comttl_txt2">
+						文本歌词
+					</div>
+					<div id="toggleItems1" class="itemsShow">
+					</div>
+				</div>
+				<div class="text_lrcshow" id="toggleItemsCon1">
+					<div style="text-align:center;">
+						{$music['texts']}
+					</div>
+				</div>
+				<div class="com_title fc_333 b_ritsd">
+					<div class="comttl_txt2">
+						类似音乐
+					</div>
+					<div class="more_hei">
+						<a href="{$music['classlink']}" target="_blank">更多</a>
+					</div>
+				</div>
+				<ul class="fl rank_list b_ritsd b_btmsd" id="player_ls">
+					<!--{loop music count=3 sort=hits class=auto}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+					<li class="hottop">
+					<div class="pic">
+						<a href="{$music['ulink']}" target="_blank"><img src="{$music['uavatar size=small']}" title="{$music['uname']}" border="0" width="54" height="54"></a>
+					</div>
+					<div class="text">
+						<div class="rank_list_inner">
+							<div class="rankttl">
+								<a href="{$music['link']}"><font color="{$music['color']}">{$music['name']}</font></a>
+							</div>
+							<div class="fr listNO{$music['i']}">
+							</div>
+						</div>
+						<div class="rank_list_inner">
+							<a href="{$music['singerlink']}" target="_blank">{$music['singername']}</a>
+						</div>
+						<div class="rank_list_inner">
+							<span class="a_oper_mh">
+							<a class="ting" href="{$music['link']}" title="试听"></a>
+							<a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+							</span>
+						</div>
+					</div>
+					</li>
+					<!--{/loop music}-->
+					<!--{loop music count=7 start=4 sort=hits class=auto}--><input style="display:none" type="checkbox" value="{$music['id']}" checked>
+					<li>
+					<div class="num listNO">
+						<script type="text/javascript">var a={$music['i']};var b=3;var c=a+b;document.write(c);</script>
+					</div>
+					<div class="songinfo">
+						<a href="{$music['link']}"><span class="fs_13 fc_06d"><font color="{$music['color']}">{$music['name']}</font></span></a>
+					</div>
+					<div class="fl a_oper tingicon">
+						<a class="ting" href="{$music['link']}" title="试听"></a><a class="down" onclick="create_down({$music['id']});" style="cursor:pointer;" title="下载"></a>
+					</div>
+					</li>
+					<!--{/loop music}-->
+					<li class="btn"><a href="javascript:lib.playerObj('player_ls');"><img src="{$_G['tempath']}css/try_all.jpg" width="78" height="20"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hr_10">
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

@@ -1,0 +1,10 @@
+# 以下为 Apache 软件的伪静态规则，IIS 或 Nginx 请到 ./static/pack/ 获取
+
+# php_value post_max_size 200m
+# php_value upload_max_filesize 200m
+
+RewriteEngine On
+
+RewriteRule ^plugin/(.*)\.html$ plugin\.php/$1/ [L]
+RewriteRule ^user/(.*)\.html$ user\.php/$1/ [L]
+RewriteRule ^index/(.*)\.html$ index\.php/$1/ [L]

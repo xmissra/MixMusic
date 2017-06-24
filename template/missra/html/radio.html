@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>随心听 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}widget/radio/css/fm.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.radio_{$radio['fmid']} .channel-btn-inner a{color:#FFF}
+.radio_{$radio['fmid']} .channel-btn-icon{background:transparent url({$_G['tempath']}widget/radio/css/channel-current.gif) no-repeat center center}
+.radio_{$radio['fmid']} .channel-btn-bg{opacity:0.65;filter:alpha(opacity=65)}
+</style>
+<script src="{$_G['tempath']}widget/radio/js/jquery.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}widget/radio/js/geci.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}widget/radio/js/fm.js" type="text/javascript"></script>
+<script src="{$_G['tempath']}widget/radio/js/jquery.jplayer.min.js" type="text/javascript"></script>
+<!--[if IE 6]>
+<script src="{$_G['tempath']}widget/radio/js/DD_belatedPNG_0.0.8a-min.js" type="text/javascript"></script>
+<script type="text/javascript">DD_belatedPNG.fix('#albumPic,.jp-mute,.jp-unmute,.downMusic,#backFm-img,.jp-play,.jp-pause,.jp-love,.jp-unlove,.jp-next,.jp-next,.jp-loveed');</script>
+<![endif]-->
+<script type="text/javascript">var fm_link = '{$rewrite['index.php/misc/radio/fm/_cid/']}';</script>
+</head>
+<body>
+<div class="radio">
+<div id="radiobg"><img id="radiobgImg" src="{$_G['tempath']}widget/radio/css/skinA06.jpg" /></div>
+<div id="headerbg"></div>
+<div id="footerbg"></div>
+<div id="footertext">Copyright &copy; <script type="text/javascript">document.write(new Date().getFullYear());</script><a href="http://{$_G['host']}{$_G['path']}" target="_blank">{$_G['name']}</a><a href="http://{$_G['host']}" target="_blank">{$_G['host']}</a></div>
+<div id="wrap">
+<div id="header">
+<div class="logoWrap"><a class="logo" href="{$rewrite['index.php/misc/radio/']}"></a></div>
+<div class="toptext"><img src="{$_G['tempath']}widget/radio/css/channel-current.gif"><span>当前电台频道:</span><span id="channel_name">{$radio['fmname']}</span></div>
+<div class="topnav"> <a class="tool tool_channel" id="tool_channel" href="javascript:void(0)">更换频道<b></b></a> <a class="tool tool_skin" id="tool_skin" href="javascript:void(0)">更换皮肤<b></b></a> </div>
+<div class="topnavbg1"></div>
+<div class="topnavbg2"></div>
+</div>
+<div id="fmDivWrap">
+<div id="fmPlayer">
+<div id="PlayStateTxt" style="display:none;"></div>
+<center><div style="width:100%;height:400px;"><embed src="{$_G['tempath']}widget/v.swf?php=fm&lists={$radio['mid']}&.swf" width="100%" height="100%" wmode="transparent" type="application/x-shockwave-flash"></embed></div></center>
+</div>
+</div>
+<div id="channelDiv">
+<div id="channellist" class="clearfix">
+<!--{loop class order=asc}--><div class="channel-cate"><ul class="channel-cate-list"><li class="channel-btn radio_{$class['id']}"><div class="channel-btn-bg"></div><div class="channel-btn-inner"><div class="channel-btn-icon"></div><a href="javascript:void(0);" onclick="location.href=fm_link.replace(/_cid/g, {$class['id']});">{$class['name']}</a></div></li></ul></div><!--{/loop class}-->
+</div>
+</div>
+<div id="skinDiv">
+<ul class="skinList">
+<li id="skin_0"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA01.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB01.jpg" /></a></li>   
+<li id="skin_1"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA02.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB02.jpg" /></a></li>
+<li id="skin_2"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA03.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB03.jpg" /></a></li>
+<li id="skin_3"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA04.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB04.jpg" /></a></li>
+<li id="skin_4"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA05.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB05.jpg" /></a></li>
+<li id="skin_5" class="skinSelect"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA06.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB06.jpg" /></a><span id="bgSelectFlag"></span></li>
+<li id="skin_6"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA07.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB07.jpg" /></a></li>
+<li id="skin_7"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA08.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB08.jpg" /></a></li>
+<li id="skin_8"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA09.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB09.jpg" /></a></li>
+<li id="skin_9"><a href="javascript:void(0);" onclick="return false;" dataimg="{$_G['tempath']}widget/radio/css/skinA10.jpg"><img src="{$_G['tempath']}widget/radio/css/skinB10.jpg" /></a></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

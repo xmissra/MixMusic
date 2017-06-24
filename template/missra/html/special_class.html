@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$special['classname']} - 专辑分类 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/bang.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.taoNav li.special_{$special['classid']} a,.taoNav li.special_{$special['classid']} a:hover{background:#537eb9 url({$_G['tempath']}css/bang.png) right 0 no-repeat}
+.bangNavList li.special_{$special['classid']} a,.bangNavList li.special_{$special['classid']} a:hover{color:#fff;font-weight:800}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a class="active" href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <!--{loop class order=asc}--><li><a class="directName" target="_blank" href="{$class['link']}">{$class['name']}</a><a class="directPlay" target="_blank" href="{$class['link']}"></a></li><!--{/loop class}-->
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 专辑分类 &gt; {$special['classname']}</h2>
+</div>
+<div class="bangBox clearfix">
+ <div class="bangL">
+  <div class="bangNav taoNav bgWrite">
+   <h2 class="bangNavHd"><img src="{$_G['tempath']}css/bang.png" /></h2>
+   <div class="bangNavBd">
+    <ul class="bangNavList">
+    <!--{loop special_class order=asc}--><li class="special_{$specialclass['id']}"><a href="{$specialclass['link']}">{$specialclass['name']}</a></li><!--{/loop special_class}-->
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="bangR">
+  <div class="mdBox bgWrite">
+   <div class="mdBoxHd mdBangHd">
+    <h1 class="mdBoxHdTit">该分类下，共有<font color="#FF6969">{$page['data']}</font>条记录。</h1>
+   </div>
+   <div class="mdBoxBd">
+    <div class="taoMusic">
+    <ul class="taoList"><!--{loop special page=10 class=this}-->
+	<li class="clearfix">
+    <div class="taoPic"><a href="{$special['link']}" class="t-i" target="_blank"><img width="100" height="100" src="{$special['cover']}" title="{$special['name']}" /></a></div>
+    <div class="taoText">
+    <h3><a href="{$special['link']}" class="t-t" target="_blank">{$special['name']}</a><a href="{$special['link']}" class="t-play" target="_blank">播放</a></h3>
+    <p>浏览人气：{$special['hits']}<span class="taoNum">更新时间：{$special['addtime style=Y-m-d H:i:s']}</span></p>
+    <p>制作人：<a href="{$special['ulink']}" target="_blank">{$special['uname']}</a></p>
+    <p class="i-t">简介：{$special['intro len=80']}</p>
+    </div>
+    </li>
+    <!--{/loop special}--></ul>
+    </div>
+    <div class="loadMore clearfix"><a href="{$page['down']}" class="loadMoreBtn">---------加载更多淘歌专辑---------</a></div>
+   </div>
+  </div>
+ </div>
+</div>
+<!--{require 'bottom.html'}-->
+</body>
+</html>

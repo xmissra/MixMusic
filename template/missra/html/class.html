@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G['charset']}" />
+<title>{$music['classname']} - 音乐分类 - {$_G['name']}</title>
+<meta name="Keywords" content="{$_G['keywords']}" />
+<meta name="Description" content="{$_G['description']}" />
+<link href="{$_G['tempath']}css/base.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}css/bang.css" rel="stylesheet" type="text/css" />
+<link href="{$_G['tempath']}widget/box/css/box.css" rel="stylesheet" type="text/css"/>
+<link href="{$_G['path']}static/pack/asynctips/asynctips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.goodNav li.music_{$music['classid']} a,.goodNav li.music_{$music['classid']} a:hover{background:#b79461 url({$_G['tempath']}css/bang.png) right 0 no-repeat}
+.bangNavList li.music_{$music['classid']} a,.bangNavList li.music_{$music['classid']} a:hover{color:#fff;font-weight:800}
+</style>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/jquery.min.js"></script>
+<script type="text/javascript" src="{$_G['path']}static/pack/asynctips/asyncbox.v1.4.5.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}js/lib.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/v.js"></script>
+<script type="text/javascript" src="{$_G['tempath']}widget/box/js/box.js"></script>
+<script type="text/javascript">
+var in_path = '{$_G['path']}';
+var temp_url = '{$_G['tempath']}';
+var search_url = '{$rewrite['index.php/search/table/target/']}';
+var play_url = '{$rewrite['index.php/misc/play/player/']}';
+var fm_link = '{$rewrite['index.php/misc/radio/fm/_cid/']}';
+</script>
+</head>
+<body>
+<!--{require 'top.html'}-->
+<div class="navWrap">
+<div class="nav clearfix">
+  <ul class="navList clearfix">
+<li><a href="{$_G['path']}">首 页</a></li>
+<!--{loop class count=1 order=asc}--><li><a class="active" href="{$class['link']}">好听的歌</a></li><!--{/loop class}-->
+<li><a href="{$rewrite['index.php/page/tag/']}">音乐曲风</a></li>
+<li><a href="{$rewrite['index.php/misc/rank/down/']}">音乐排行榜</a></li>
+<!--{loop special_class count=1 order=asc}--><li><a href="{$specialclass['link']}">淘歌专辑</a></li><!--{/loop special_class}-->
+<li><a href="{$rewrite['index.php/misc/radio/']}" target="_blank">随心听</a></li>
+<!--{loop singer_class count=1 order=asc}--><li><a href="{$singerclass['link']}">歌手大全</a></li><!--{/loop singer_class}-->
+<!--{loop video_class count=1 order=asc}--><li><a href="{$videoclass['link']}">高清MV</a></li><!--{/loop video_class}-->
+<li><a href="{$_G['path']}user.php">用户中心</a></li>
+  </ul>
+ </div>
+</div>
+<div class="box musicBus mt bgWrite">
+   <ul class="clearfix directNew">
+   <li><a class="directName" target="_blank" href="{$rewrite['index.php/misc/rank/down/']}">下载排行</a><a class="directPlay" target="_blank" href="{$rewrite['index.php/misc/rank/down/']}"></a></li>
+   <li><a class="directName" target="_blank" href="{$rewrite['index.php/misc/rank/fav/']}">收藏排行</a><a class="directPlay" target="_blank" href="{$rewrite['index.php/misc/rank/fav/']}"></a></li>
+   <li><a class="directName" target="_blank" href="{$rewrite['index.php/misc/rank/good/']}">好评排行</a><a class="directPlay" target="_blank" href="{$rewrite['index.php/misc/rank/good/']}"></a></li>
+   <li><a class="directName" target="_blank" href="{$rewrite['index.php/misc/rank/bad/']}">差评排行</a><a class="directPlay" target="_blank" href="{$rewrite['index.php/misc/rank/bad/']}"></a></li>
+  </ul>
+</div>
+<div class="box">
+ <h2 class="crumb">当前位置 &gt; 音乐分类 &gt; {$music['classname']}</h2>
+</div>
+<div class="bangBox clearfix">
+ <div class="bangL">
+  <div class="bangNav goodNav bgWrite">
+   <h2 class="bangNavHd"><img src="{$_G['tempath']}css/bang.png" /></h2>
+   <div class="bangNavBd">
+    <ul class="bangNavList">
+    <!--{loop class order=asc}--><li class="music_{$class['id']}"><a href="{$class['link']}">{$class['name']}</a></li><!--{/loop class}-->
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="bangR">
+  <div class="mdBox bgWrite">
+   <div class="mdBoxHd mdBangHd">
+    <h1 class="mdBoxHdTit">该分类下，共有<font color="#FF6969">{$page['data']}</font>条记录。</h1>
+   </div>
+   <div class="mdBoxBd">
+    <div class="bangPlayAll"><span class="buXuan">不想选歌？</span><a class="playFast" href="javascript:void(0)" onclick="window.open(fm_link.replace(/_cid/g, {$music['classid']}));">随机播放 - {$music['classname']}</a><span class="allNum">（随机100首）</span></div>
+    <div class="bangMusic">
+    <div class="songList clearfix" id="list_music"><ol><!--{loop music page=60 class=this}--><li><input class="check" type="checkbox" id="music_{$music['id']}" value="{$music['id']}" /><span class="songNum">{$music['i']}.</span><a class="songName" href="{$music['link']}" target="_blank"><font color="{$music['color']}">{$music['name']}</font></a><a class="add" onclick="lib.add_play({$music['id']}, 'music');">加入列表</a></li><!--{/loop music}--></ol></div>
+    <div class="setPlay"><a style="cursor:pointer;" onclick="lib.quanxuan('list_music');" class="setPlayXuan">全选/反选</a><a style="cursor:pointer;" onclick="lib.player('list_music', 'play');" class="setPlayPlay">播放</a><a style="cursor:pointer;" onclick="lib.player('list_music', 'box');" class="setPlayAdd">加入列表</a></div>
+    </div>
+    <div class="loadMore clearfix"><a href="{$page['down']}" class="loadMoreBtn">---------加载更多好听的歌---------</a></div>
+   </div>
+  </div>
+ </div>
+</div>
+<!--{require 'box.html'}-->
+<!--{require 'bottom.html'}-->
+</body>
+</html>
