@@ -2,5 +2,5 @@
 
 新一代音乐管理系统<br/>
 
-官网:http://music.missra.com/
+预览:http://music.lyove.com/
 
