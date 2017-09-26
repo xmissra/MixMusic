@@ -1,123 +1,190 @@
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-p,
-blockquote,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-pre,
-form,
-fieldset,
-lengend,
-button,
-input,
-textarea,
-th,
-td {
-    margin: 0;
-    padding: 0
+/* Default
+=============================================================================================== */
+*, *:after, *:before {
+/*
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	*/
 }
-
-body,
-button,
-input,
-select,
-textarea,
-th {
-    color: #8b8b8b;
-    background-color: #FFF;
-    font-size: 12px;
-    line-height: 1.5em;
-    font-family: Arial, Tahoma, "hiragino sans gb", Helvetica
+html {
+	font-family:"Microsoft YaHei","simsun","Microsoft YaHei UI Light", Arial, Helvetica, sans-serif;
+	line-height:200%;
+	font-size:13px;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: 100%
+body {
+	font-family:"Microsoft YaHei","simsun","Microsoft YaHei UI Light", Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color: #333;
+	background: #fff;
+	line-height:200%;	
 }
-
-li {
-    list-style: none
+body, div, h1, h2, h3, h4, h5, h6, a, p, span, ol, ul, li, dl, dt, dd, em, fieldset, form, object, iframe, blockquote, pre, abbr, acronym, address, code, del, dfn, q, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
 }
-
-img {
-    border: 0 none;
-    -ms-interpolation-mode: bicubic
-}
-
-input[type="button"],
-input[type='submit'] {
-    cursor: pointer
-}
-
-button {
-    cursor: pointer
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
-
 a {
-    color: #515151;
-    text-decoration: none
+	text-decoration:none;
+	background: transparent;
+	color: #1A1A1A;
+}
+a:active,
+a:hover,
+a:focus  {
+	outline: 0;
+	color: #0087BD;
+}
+b,strong {
+	font-weight: bold;
+}
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+hr {
+	height: 0;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	-ms-interpolation-mode: bicubic;
+	display: inline-block;
+	vertical-align: middle;
+	border:none;
+}
+pre {
+	overflow: auto;
+}
+mark {
+	color: #000;
+	background: #ff0;
+}
+small {
+	font-size: 80%;
+}
+ul,ol {
+	list-style:none;
 }
 
-a:hover {
-    color: #333
+/* HTML5 元素 */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block;
+}
+audio,canvas,progress,video {
+	display: inline-block;
+	vertical-align: baseline;
 }
 
-.data {
-    display: none
+/* 表格 */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td,th {
+	padding: 0; 
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px
+/* Forms 表单样式 */
+form{
+	
+}
+button, input, textarea, select, optgroup {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+button {
+	line-height: normal;
+	overflow: visible;
+}
+button,
+select {
+	text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+	cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+input {
+	line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+input[type="search"] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 5px 10px 12px;
+}
+legend {
+	border: 0;
+	padding: 0;
+}
+textarea {
+	overflow: auto;
+}
+optgroup {
+	font-weight: bold;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td,th {
+	padding: 0; 
 }
 
-::-webkit-scrollbar-button:vertical {
-    display: none
+/* scrollBar */
+::-webkit-scrollbar,
+::-webkit-scrollbar:horizontal  {
+    width: 8px;
+    background-color: #F5F5F5;
 }
 
-::-webkit-scrollbar-track:vertical {
-    background-color: black
+@media (min-width: 1024px) {
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar:horizontal  {
+        width: 10px;
+    }
 }
 
-::-webkit-scrollbar-track-piece {
-    background: #FFF
+::-webkit-scrollbar-thumb {
+    background-color: #777;
 }
 
-::-webkit-scrollbar-thumb:vertical {
-    background-color: #8e8e8e;
-    border-radius: 5px
-}
-
-::-webkit-scrollbar-thumb:vertical:hover {
-    background-color: #3b3b3b
-}
-
-::-webkit-scrollbar-corner:vertical {
-    background-color: #535353
-}
-
-::-webkit-scrollbar-resizer:vertical {
-    background-color: #ff6e00
-}
+/* Layout */
 
 .layout_1 {
     width: 960px;
