@@ -1,6 +1,6 @@
 # Mixmusic
 
 新一代音乐管理系统<br/>
-
-预览:http://music.lyove.com/
+[Mixmusic](https://github.com/missra-kit/MixMusic)
+预览:http://music.missra.com/
 
